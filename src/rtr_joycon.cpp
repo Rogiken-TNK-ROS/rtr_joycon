@@ -14,11 +14,7 @@ int main(int argc, char **argv)
   while (ros::ok())
   {
     state.WriteString("AAA");
-    // state.WriteString("BBB");
-    // state.WriteString("CCC");
-    // state.WriteString("DDD");
-    // state.WriteString("EEE");
-    // state.WriteString("FFF");
+    state.publish();
     std_msgs::String msg;
     msg.data = "hello world!";
     ROS_INFO("publish: %s", msg.data.c_str());

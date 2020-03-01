@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <launch>
-  <node pkg="joy" type="joy_node" name="joy_node"/>
+  <arg name="joy_dev" default="/dev/input/js0" />
+  <rosparam file="$(find rtr_joycon)/config/PS4.yaml" command="load" />
+
+  <node pkg="joy" type="joy_node" name="joy_node">
+    <param name="dev" value="$(arg joy_dev)" />
+    <param name="autorepeat_rate" value="20" />
+  </node>
+  
   <node pkg="rtr_joycon" type="rtr_joycon" name="rtr_joycon" output="screen"/>
 </launch>
