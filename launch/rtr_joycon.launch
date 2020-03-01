@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="joy" type="joy_node" name="joy_node"/>
+  <node pkg="rtr_joycon" type="rtr_joycon" name="rtr_joycon" output="screen"/>
+</launch>
