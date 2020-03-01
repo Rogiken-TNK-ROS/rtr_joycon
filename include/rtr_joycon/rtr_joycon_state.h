@@ -18,6 +18,7 @@ private:
   ros::NodeHandle nh_;
   ros::Subscriber joy_node_sub_;
   int count_;
+  int state_num_;
 
   using JoyConfigType = std::function<void(std::string const&)>;
   JoyConfigType joy_config_;
