@@ -32,9 +32,11 @@ void RtrJoyconState::publish(void)
     i++;
     if (i>7) break;
   }
-  std::cout << "index:" << i << std::endl;
+  cmd_vel_.angular.z = joy_msg_.axes[i];
+  i++;
   cmd_vel_.linear.x = joy_msg_.axes[i];
   cmd_vel_pub_.publish(cmd_vel_);
+  i = 0;
 }
 
 void RtrJoyconState::setKeyAssign(const std::string config)

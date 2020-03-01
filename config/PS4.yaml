@@ -1,25 +1,7 @@
 config_0:
-  stick_left: /RTRDoubleArmV7/base_controller/cmd_vel_         # 左スティック
+  stick_left: /RTRDoubleArmV7/base_controller/cmd_vel         # 左スティック
   stick_right: /RTRDoubleArmV7/base_controller/cmd_vel_        # 右スティック
   button_up_down: /RTRDoubleArmV7/base_controller/cmd_vel_     # 十字キー 上下
-  button_left_right: /RTRDoubleArmV7/base_controller/cmd_vel_  # 十字キー 左右
-  button_A: /RTRDoubleArmV7/base_controller/cmd_vel_           # ×
-  button_B: /RTRDoubleArmV7/base_controller/cmd_vel_           # ❍
-  button_X: /RTRDoubleArmV7/base_controller/cmd_vel_           # □
-  button_Y: /RTRDoubleArmV7/base_controller/cmd_vel_           # △
-  button_l1: /RTRDoubleArmV7/base_controller/cmd_vel_          # L1
-  button_r1: /RTRDoubleArmV7/base_controller/cmd_vel_          # R1
-  button_l2: /RTRDoubleArmV7/base_controller/cmd_vel          # L2
-  button_r2: /RTRDoubleArmV7/base_controller/cmd_vel_          # R2
-  button_l3: /RTRDoubleArmV7/base_controller/cmd_vel_          # L3
-  button_r3: /RTRDoubleArmV7/base_controller/cmd_vel_          # R3
-  button_option: /RTRDoubleArmV7/base_controller/cmd_vel_      # option
-  button_start: /RTRDoubleArmV7/base_controller/cmd_vel_       # start
-  button_home: /RTRDoubleArmV7/base_controller/cmd_vel_        # home
-config_1:
-  stick_left: /RTRDoubleArmV7/base_controller/cmd_vel_         # 左スティック
-  stick_right: /RTRDoubleArmV7/base_controller/cmd_vel_        # 右スティック
-  button_up_down: /RTRDoubleArmV7/base_controller/cmd_vel     # 十字キー 上下
   button_left_right: /RTRDoubleArmV7/base_controller/cmd_vel_  # 十字キー 左右
   button_A: /RTRDoubleArmV7/base_controller/cmd_vel_           # ×
   button_B: /RTRDoubleArmV7/base_controller/cmd_vel_           # ❍
@@ -31,6 +13,24 @@ config_1:
   button_r2: /RTRDoubleArmV7/base_controller/cmd_vel_          # R2
   button_l3: /RTRDoubleArmV7/base_controller/cmd_vel_          # L3
   button_r3: /RTRDoubleArmV7/base_controller/cmd_vel_          # R3
-  button_option: /RTRDoubleArmV7/base_controller/cmd_vel_      # option
+  button_option: state_button                                   # option
+  button_start: /RTRDoubleArmV7/base_controller/cmd_vel_       # start
+  button_home: /RTRDoubleArmV7/base_controller/cmd_vel_        # home
+config_1:
+  stick_left: /RTRDoubleArmV7/base_controller/cmd_vel         # 左スティック
+  stick_right: /RTRDoubleArmV7/base_controller/cmd_vel_        # 右スティック
+  button_up_down: /RTRDoubleArmV7/base_controller/cmd_vel_     # 十字キー 上下
+  button_left_right: /RTRDoubleArmV7/base_controller/cmd_vel_  # 十字キー 左右
+  button_A: /RTRDoubleArmV7/base_controller/cmd_vel_           # ×
+  button_B: /RTRDoubleArmV7/base_controller/cmd_vel_           # ❍
+  button_X: /RTRDoubleArmV7/base_controller/cmd_vel_           # □
+  button_Y: /RTRDoubleArmV7/base_controller/cmd_vel_           # △
+  button_l1: /RTRDoubleArmV7/base_controller/cmd_vel_          # L1
+  button_r1: /RTRDoubleArmV7/base_controller/cmd_vel_          # R1
+  button_l2: /RTRDoubleArmV7/base_controller/cmd_vel_          # L2
+  button_r2: /RTRDoubleArmV7/base_controller/cmd_vel_          # R2
+  button_l3: /RTRDoubleArmV7/base_controller/cmd_vel_          # L3
+  button_r3: /RTRDoubleArmV7/base_controller/cmd_vel_          # R3
+  button_option: state_button                                   # option
   button_start: /RTRDoubleArmV7/base_controller/cmd_vel_       # start
   button_home: /RTRDoubleArmV7/base_controller/cmd_vel_        # home
