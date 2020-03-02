@@ -2,6 +2,7 @@
 #define RTR_JOY_CON_H
 
 #include <ros/ros.h>
+#include <control_msgs/JointTrajectoryControllerState.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/Joy.h>
 
@@ -16,13 +17,16 @@ private:
   ros::NodeHandle nh_;
   ros::Subscriber joy_node_sub_;
   ros::Publisher cmd_vel_pub_;
+  ros::Publisher arm_vel_pub_;
 
   geometry_msgs::Twist cmd_vel_;
+  control_msgs::JointTrajectoryControllerState arm_vel_;
   sensor_msgs::Joy joy_msg_;
   sensor_msgs::Joy joy_msg_buf_;
 
   std::vector<std::string> axes_;
   std::vector<std::string> buttons_;
+  float speed_rate_;
   int config_num_;
 
   using JoyConfigType = std::function<void(std::string const&)>;
@@ -30,7 +34,8 @@ private:
 
 private:
   void updateJoyMsg(const sensor_msgs::Joy& joy_msg);
-  void setKeyAssign(const std::string config);
+  int getStringIndex(const std::string string);
+  void readYaml(const std::string config);
   void updateState(void);
 
   JoyConfigType config_0()
@@ -38,7 +43,7 @@ private:
     return [=](std::string const& s) 
     {
       std::cout << s << std::endl;
-      setKeyAssign("config_0");
+      // readYaml("config_0");
     };
   }
   JoyConfigType config_1()
@@ -46,7 +51,7 @@ private:
     return [=](std::string const& s)
     {
       std::cout << s << "+" << std::endl;
-      setKeyAssign("config_1");
+      // readYaml("config_1");
     };
   }
 
