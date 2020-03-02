@@ -2,15 +2,18 @@
 
 RtrJoyconState::RtrJoyconState(ros::NodeHandle& nh)
   : nh_(nh),
-    speed_rate_(0.6),
+    speed_rate_(0.2),
     joy_config_(config_0()), 
     config_num_(0),
     axes_(9, ""),
-    buttons_(14, "")
+    buttons_(14, ""),
+    joint_names_({ "MFRAME", "BLOCK", "BOOM", "ARM", "TOHKU_PITCH", "TOHKU_ROLL", 
+                    "UFRAME", "MNP_SWING", "MANIBOOM", "MANIARM","MANIELBOW", 
+                    "YAWJOINT", "HANDBASE", "TOHKU_TIP_01", "TOHKU_TIP_02", "PUSHROD" })
 {
   joy_node_sub_ = nh_.subscribe("joy", 10, &RtrJoyconState::updateJoyMsg, this);
   cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/RTRDoubleArmV7/base_controller/cmd_vel", 10);
-  arm_vel_pub_ = nh_.advertise<control_msgs::JointTrajectoryControllerState>("/RTRDoubleArmV7/tohoku_arm_controller/state", 10);
+  jog_joint_pub_ = nh_.advertise<jog_msgs::JogJoint>("/jog_joint", 10);
 
   joy_msg_.axes = {0};
   joy_msg_.buttons = {0};
@@ -29,30 +32,19 @@ void RtrJoyconState::updateJoyMsg(const sensor_msgs::Joy& joy_msg)
 void RtrJoyconState::publish(void)
 {
   // cmd_vel
-  int STEERING_X_index = getStringIndex("STEERING_X");
-  int STEERING_Z_index = getStringIndex("STEERING_Z");
-  // std::cout << STEERING_X_index << std::endl;
-  // std::cout << STEERING_Z_index << std::endl;
-  cmd_vel_.linear.x  = joy_msg_.axes[STEERING_Z_index];
-  cmd_vel_.angular.z = joy_msg_.axes[STEERING_X_index];
-  // ROS_INFO_STREAM(cmd_vel_);
-  cmd_vel_pub_.publish(cmd_vel_);
+  geometry_msgs::Twist cmd_vel;
+  cmd_vel.linear.x  = joy_msg_.axes[getStringIndex("STEERING_X")];
+  cmd_vel.angular.z = joy_msg_.axes[getStringIndex("STEERING_Z")];
+  cmd_vel_pub_.publish(cmd_vel);
 
-  // arm_vel
-  int MFRAME_index = getStringIndex("MFRAME");
-  int BOOM_index = getStringIndex("BOOM");
-  int BLOCK_index = getStringIndex("BLOCK");
-  int ARM_index = getStringIndex("ARM");
-  int TOHKU_PITCH_UP_index = getStringIndex("TOHKU_PITCH_UP");
-  int TOHKU_ROLL_UP_index = getStringIndex("TOHKU_ROLL_UP");
-  int TOHKU_PITCH_DOWN_index = getStringIndex("TOHKU_PITCH_DOWN");
-  int TOHKU_ROLL_DOWN_index = getStringIndex("TOHKU_ROLL_DOWN");
-  std::cout << arm_vel_.desired.positions[0] << std::endl;
-  // arm_vel_.desired.velocities[0] = speed_rate_ * joy_msg_.axes[MFRAME_index];
-  // arm_vel_.desired.velocities[1] = speed_rate_ * joy_msg_.axes[BOOM_index];
-  // arm_vel_.desired.velocities[2] = speed_rate_ * joy_msg_.axes[BLOCK_index];
-  // arm_vel_.desired.velocities[3] = speed_rate_ * joy_msg_.axes[ARM_index];
-  // arm_vel_pub_.publish(arm_vel_);
+  // jog_joint
+  jog_msgs::JogJoint jog_joint;
+  for (auto joint_name : joint_names_)
+  {
+    jog_joint.joint_names.push_back(joint_name);
+    jog_joint.deltas.push_back(speed_rate_ * joy_msg_.axes[getStringIndex(joint_name)]);
+  }
+  jog_joint_pub_.publish(jog_joint);
 }
 
 int RtrJoyconState::getStringIndex(const std::string string)
@@ -116,7 +108,6 @@ void RtrJoyconState::updateState(void)
       readYaml("config_2");
 			break;
     default:
-      joy_config_ = joy_config_;
 			break;
   }
 }

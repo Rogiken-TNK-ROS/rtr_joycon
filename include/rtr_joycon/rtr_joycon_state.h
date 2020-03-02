@@ -2,9 +2,9 @@
 #define RTR_JOY_CON_H
 
 #include <ros/ros.h>
-#include <control_msgs/JointTrajectoryControllerState.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/Joy.h>
+#include <jog_msgs/JogJoint.h>
 
 class RtrJoyconState
 {
@@ -17,15 +17,14 @@ private:
   ros::NodeHandle nh_;
   ros::Subscriber joy_node_sub_;
   ros::Publisher cmd_vel_pub_;
-  ros::Publisher arm_vel_pub_;
+  ros::Publisher jog_joint_pub_;
 
-  geometry_msgs::Twist cmd_vel_;
-  control_msgs::JointTrajectoryControllerState arm_vel_;
   sensor_msgs::Joy joy_msg_;
   sensor_msgs::Joy joy_msg_buf_;
 
   std::vector<std::string> axes_;
   std::vector<std::string> buttons_;
+  std::vector<std::string> joint_names_;
   float speed_rate_;
   int config_num_;
 
