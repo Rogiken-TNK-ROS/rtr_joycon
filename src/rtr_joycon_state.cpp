@@ -5,8 +5,8 @@ RtrJoyconState::RtrJoyconState(ros::NodeHandle& nh)
     speed_rate_(0.6),
     joy_config_(config_0()), 
     config_num_(0),
-    axes_(8, ""),
-    buttons_(13, "")
+    axes_(9, ""),
+    buttons_(14, "")
 {
   joy_node_sub_ = nh_.subscribe("joy", 10, &RtrJoyconState::updateJoyMsg, this);
   cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/RTRDoubleArmV7/base_controller/cmd_vel", 10);
@@ -47,7 +47,7 @@ void RtrJoyconState::publish(void)
   int TOHKU_ROLL_UP_index = getStringIndex("TOHKU_ROLL_UP");
   int TOHKU_PITCH_DOWN_index = getStringIndex("TOHKU_PITCH_DOWN");
   int TOHKU_ROLL_DOWN_index = getStringIndex("TOHKU_ROLL_DOWN");
-  std::cout << arm_vel_.desired.velocities[0] << std::endl;
+  std::cout << arm_vel_.desired.positions[0] << std::endl;
   // arm_vel_.desired.velocities[0] = speed_rate_ * joy_msg_.axes[MFRAME_index];
   // arm_vel_.desired.velocities[1] = speed_rate_ * joy_msg_.axes[BOOM_index];
   // arm_vel_.desired.velocities[2] = speed_rate_ * joy_msg_.axes[BLOCK_index];
@@ -97,7 +97,7 @@ void RtrJoyconState::updateState(void)
   if (joy_msg_buf_.buttons[8] < joy_msg_.buttons[8])
   {
     config_num_++;
-    if (config_num_ > 1) config_num_ = 0;
+    if (config_num_ > 2) config_num_ = 0;
   }
 
   // switch pattern
@@ -110,6 +110,10 @@ void RtrJoyconState::updateState(void)
     case 1:
       joy_config_ = config_1();
       readYaml("config_1");
+			break;
+    case 2:
+      joy_config_ = config_2();
+      readYaml("config_2");
 			break;
     default:
       joy_config_ = joy_config_;

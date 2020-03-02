@@ -42,16 +42,21 @@ private:
   {
     return [=](std::string const& s) 
     {
-      std::cout << s << std::endl;
-      // readYaml("config_0");
+      std::cout << s << "0" << std::endl;
     };
   }
   JoyConfigType config_1()
   {
     return [=](std::string const& s)
     {
-      std::cout << s << "+" << std::endl;
-      // readYaml("config_1");
+      std::cout << s << "1" << std::endl;
+    };
+  }
+  JoyConfigType config_2()
+  {
+    return [=](std::string const& s)
+    {
+      std::cout << s << "2" << std::endl;
     };
   }
 
