@@ -11,7 +11,6 @@ class RtrJoyconState
 public:
   RtrJoyconState(ros::NodeHandle& nh);
   void publish(void);
-  void WriteString(std::string const& s);
 
 private:
   ros::NodeHandle nh_;
@@ -22,8 +21,7 @@ private:
   sensor_msgs::Joy joy_msg_;
   sensor_msgs::Joy joy_msg_buf_;
 
-  std::vector<std::string> axes_;
-  std::vector<std::string> buttons_;
+  std::vector<std::string> settings_;
   std::vector<std::string> joint_names_;
   float speed_rate_;
   int config_num_;
@@ -33,7 +31,8 @@ private:
 
 private:
   void updateJoyMsg(const sensor_msgs::Joy& joy_msg);
-  int getStringIndex(const std::string string);
+  float jogCommandSet(const std::string joint_name);
+  int getStringIndex(const std::vector<std::string> str_vec, const std::string string);
   void readYaml(const std::string config);
   void updateState(void);
 

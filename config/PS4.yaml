@@ -25,12 +25,12 @@ config_1:
   stick_right_V:        ARM
   button_up_down:       none
   button_left_right:    none
-  button_A:             TOHKU_PITCH_UP
-  button_B:             TOHKU_ROLL_UP
-  button_Y:             TOHKU_PITCH_DOWN
-  button_X:             TOHKU_ROLL_DOWN
+  button_A:             TOHKU_PITCH_DOWN
+  button_B:             TOHKU_ROLL_DOWN
+  button_Y:             TOHKU_PITCH_UP
+  button_X:             TOHKU_ROLL_UP
   button_l1:            none
-  button_r1:            TOHKU_TIP
+  button_r1:            none
   button_l2:            none
   button_r2:            TOHKU_TIP
   button_l3:            none
@@ -45,12 +45,12 @@ config_2:
   stick_right_V:        MANIARM
   button_up_down:       none
   button_left_right:    none
-  button_A:             MANIELBOW_up
-  button_B:             YAWJOINT_up
-  button_Y:             MANIELBOW_down
-  button_X:             YAWJOINT_down
+  button_A:             MANIELBOW_DOWN
+  button_B:             YAWJOINT_DOWN
+  button_Y:             MANIELBOW_UP
+  button_X:             YAWJOINT_UP
   button_l1:            none
-  button_r1:            PUSHROD
+  button_r1:            none
   button_l2:            none
   button_r2:            PUSHROD
   button_l3:            none

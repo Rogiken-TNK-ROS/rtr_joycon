@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 
   while (ros::ok())
   {
-    state.WriteString("using config : ");
     state.publish();
 
     ros::spinOnce();
