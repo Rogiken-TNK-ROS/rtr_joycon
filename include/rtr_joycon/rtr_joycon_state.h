@@ -5,6 +5,7 @@
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/Joy.h>
 #include <jog_msgs/JogJoint.h>
+#include <jog_msgs/JogFrame.h>
 
 class RtrJoyconState
 {

@@ -28,8 +28,9 @@ void RtrJoyconState::publish(void)
   cmd_vel.angular.z = joy_msg_.axes[getStringIndex(settings_, "STEERING_Z")];
   cmd_vel_pub_.publish(cmd_vel);
 
-  // jog_joint
+  // jog_msgs
   jog_msgs::JogJoint jog_joint;
+  jog_msgs::JogFrame jog_frame;
   for (auto joint_name : joint_names_)
   {
     jog_joint.joint_names.push_back(joint_name);
