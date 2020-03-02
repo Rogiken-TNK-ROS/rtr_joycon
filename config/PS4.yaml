@@ -30,25 +30,25 @@ config_1:
   button_Y:             TOHKU_PITCH_DOWN
   button_X:             TOHKU_ROLL_DOWN
   button_l1:            none
-  button_r1:            none
+  button_r1:            TOHKU_TIP
   button_l2:            none
-  button_r2:            none
+  button_r2:            TOHKU_TIP
   button_l3:            none
   button_r3:            none
   button_option:        STATE
   button_start:         none
   button_home:          none
 config_2:
-  stick_left_H:         MFRAME
-  stick_left_V:         BOOM
-  stick_right_H:        BLOCK
-  stick_right_V:        ARM
+  stick_left_H:         UFRAME
+  stick_left_V:         MANIBOOM
+  stick_right_H:        MNP_SWING
+  stick_right_V:        MANIARM
   button_up_down:       none
   button_left_right:    none
-  button_A:             TOHKU_PITCH_UP
-  button_B:             TOHKU_ROLL_UP
-  button_Y:             TOHKU_PITCH_DOWN
-  button_X:             TOHKU_ROLL_DOWN
+  button_A:             MANIELBOW_up
+  button_B:             YAWJOINT_up
+  button_Y:             MANIELBOW_down
+  button_X:             YAWJOINT_down
   button_l1:            none
   button_r1:            none
   button_l2:            none
