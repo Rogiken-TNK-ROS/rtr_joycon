@@ -6,12 +6,16 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  geometry_msgs
+  jog_msgs
 )
 
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS 
     std_msgs
+    geometry_msgs
+    jog_msgs
 )
 
 ###########

@@ -12,6 +12,8 @@
 
   <depend>roscpp</depend>
   <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>jog_msgs</depend>
 
   <exec_depend>rviz</exec_depend>
 
