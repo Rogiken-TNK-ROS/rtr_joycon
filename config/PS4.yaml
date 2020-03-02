@@ -1,6 +1,6 @@
 config_0:
-  stick_left_H:         STEERING_X
-  stick_left_V:         STEERING_Z
+  stick_left_H:         STEERING_Z
+  stick_left_V:         STEERING_X
   stick_right_H:        none
   stick_right_V:        none
   button_up_down:       none
@@ -50,9 +50,9 @@ config_2:
   button_Y:             MANIELBOW_down
   button_X:             YAWJOINT_down
   button_l1:            none
-  button_r1:            none
+  button_r1:            PUSHROD
   button_l2:            none
-  button_r2:            none
+  button_r2:            PUSHROD
   button_l3:            none
   button_r3:            none
   button_option:        STATE
