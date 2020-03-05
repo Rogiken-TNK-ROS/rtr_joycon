@@ -8,11 +8,15 @@ RtrJoyconState::RtrJoyconState(ros::NodeHandle& nh)
     settings_(22, ""),
     joint_names_({ "MFRAME", "BLOCK", "BOOM", "ARM", "TOHKU_PITCH", "TOHKU_ROLL", 
                     "UFRAME", "MNP_SWING", "MANIBOOM", "MANIARM","MANIELBOW", 
-                    "YAWJOINT", "HANDBASE", "TOHKU_TIP_01", "TOHKU_TIP_02", "PUSHROD" })
+                    "YAWJOINT", "HANDBASE", "TOHKU_TIP_01", "TOHKU_TIP_02", "PUSHROD" }),
+    tohoku_gipper_joint_names_({"TOHKU_TIP_01", "TOHKU_TIP_02"}),
+    mani_gipper_joint_names_({"PUSHROD"})
 {
   joy_node_sub_ = nh_.subscribe("joy", 10, &RtrJoyconState::updateJoyMsg, this);
   cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/RTRDoubleArmV7/base_controller/cmd_vel", 10);
   jog_joint_pub_ = nh_.advertise<jog_msgs::JogJoint>("/jog_joint", 10);
+  tohoku_trajectory_pub_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/RTRDoubleArmV7/tohoku_gripper_controller/command", 10);
+  mani_trajectory_pub_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/RTRDoubleArmV7/mani_gripper_controller/command", 10);
 
   joy_msg_.axes = {0};
   joy_msg_.buttons = {0};
@@ -30,13 +34,23 @@ void RtrJoyconState::publish(void)
 
   // jog_msgs
   jog_msgs::JogJoint jog_joint;
-  jog_msgs::JogFrame jog_frame;
   for (auto joint_name : joint_names_)
   {
     jog_joint.joint_names.push_back(joint_name);
     jog_joint.deltas.push_back(speed_rate_ * jogCommandSet(joint_name));
   }
   jog_joint_pub_.publish(jog_joint);
+
+  // tohoku_gripper
+  trajectory_msgs::JointTrajectory tohoku_trajectory;
+  trajectory_msgs::JointTrajectoryPoint point;
+  for (auto joint_name : tohoku_gipper_joint_names_)
+  {
+    tohoku_trajectory.joint_names.push_back(joint_name);
+  }
+  point.positions = {3.14, 0.0};
+  tohoku_trajectory.points.push_back(point);
+  tohoku_trajectory_pub_.publish(tohoku_trajectory);
 }
 
 float RtrJoyconState::jogCommandSet(const std::string joint_name)
@@ -84,9 +98,9 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
     int TOHKU_TIP_index = getStringIndex(settings_, "TOHKU_TIP");
 
     if (TOHKU_TIP_index < axes_size)
-      return joy_msg_.axes[getStringIndex(settings_, "TOHKU_TIP")];
+      return joy_msg_.axes[TOHKU_TIP_index];
     else
-      return joy_msg_.buttons[getStringIndex(settings_, "TOHKU_TIP")-axes_size];
+      return joy_msg_.buttons[TOHKU_TIP_index - axes_size];
   }
   else
   {
