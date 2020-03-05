@@ -43,14 +43,40 @@ void RtrJoyconState::publish(void)
 
   // tohoku_gripper
   trajectory_msgs::JointTrajectory tohoku_trajectory;
-  trajectory_msgs::JointTrajectoryPoint point;
-  for (auto joint_name : tohoku_gipper_joint_names_)
+  trajectory_msgs::JointTrajectoryPoint tohoku_point;
+  // mani_gripper
+  trajectory_msgs::JointTrajectory mani_trajectory;
+  trajectory_msgs::JointTrajectoryPoint mani_point;
+
+  if (config_num_ == 1)
   {
-    tohoku_trajectory.joint_names.push_back(joint_name);
+    for (auto joint_name : tohoku_gipper_joint_names_)
+    {
+      tohoku_trajectory.joint_names.push_back(joint_name);
+      tohoku_point.positions.push_back(0.349065850399 / 2.0 * (jogCommandSet("TOHKU_TIP_01") - 1.0));
+    }
+    ros::Duration time(1.0);
+    tohoku_point.time_from_start = time;
+    tohoku_trajectory.points.push_back(tohoku_point);
   }
-  point.positions = {3.14, 0.0};
-  tohoku_trajectory.points.push_back(point);
+  else if (config_num_ == 2)
+  {
+    for (auto joint_name : mani_gipper_joint_names_)
+    {
+      mani_trajectory.joint_names.push_back(joint_name);
+      mani_point.positions.push_back(0.05 / 2.0 * (jogCommandSet("PUSHROD") - 1.0));
+    }
+    ros::Duration time(1.0);
+    mani_point.time_from_start = time;
+    mani_trajectory.points.push_back(mani_point);
+  }
+  else
+  {
+    /* code */
+  }
+
   tohoku_trajectory_pub_.publish(tohoku_trajectory);
+  mani_trajectory_pub_.publish(mani_trajectory);
 }
 
 float RtrJoyconState::jogCommandSet(const std::string joint_name)
@@ -101,6 +127,15 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
       return joy_msg_.axes[TOHKU_TIP_index];
     else
       return joy_msg_.buttons[TOHKU_TIP_index - axes_size];
+  }
+  else if (joint_name == "PUSHROD")
+  {
+    int PUSHROD_index = getStringIndex(settings_, "PUSHROD");
+
+    if (PUSHROD_index < axes_size)
+      return joy_msg_.axes[PUSHROD_index];
+    else
+      return joy_msg_.buttons[PUSHROD_index-axes_size];
   }
   else
   {
