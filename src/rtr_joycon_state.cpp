@@ -28,8 +28,10 @@ void RtrJoyconState::publish(void)
 {
   // cmd_vel
   geometry_msgs::Twist cmd_vel;
-  int steer_x_index = getStringIndex(settings_, "STEERING_X");
-  int steer_z_index = getStringIndex(settings_, "STEERING_Z");
+  int steer_x_index;
+  int steer_z_index;
+  getStringIndex(steer_x_index, settings_, "STEERING_X");
+  getStringIndex(steer_z_index, settings_, "STEERING_Z");
   if (steer_x_index == settings_.size())
   {
     cmd_vel.linear.x  = 0.0;
@@ -95,43 +97,56 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
 
   if (joint_name == "TOHKU_PITCH")
   {
-    int TOHKU_PITCH_index = getStringIndex(settings_, "TOHKU_PITCH_UP");
+    int TOHKU_PITCH_UP_index;
+    int TOHKU_PITCH_DOWN_index;
+    getStringIndex(TOHKU_PITCH_UP_index, settings_,   "TOHKU_PITCH_UP");
+    getStringIndex(TOHKU_PITCH_DOWN_index, settings_, "TOHKU_PITCH_DOWN");
 
-    if (TOHKU_PITCH_index < axes_size)
-      return joy_msg_.axes[getStringIndex(settings_, "TOHKU_PITCH_UP")] - joy_msg_.axes[getStringIndex(settings_, "TOHKU_PITCH_DOWN")];
+    if (TOHKU_PITCH_UP_index < axes_size)
+      return joy_msg_.axes[TOHKU_PITCH_UP_index] - joy_msg_.axes[TOHKU_PITCH_DOWN_index];
     else
-      return joy_msg_.buttons[getStringIndex(settings_, "TOHKU_PITCH_UP")-axes_size] - joy_msg_.buttons[getStringIndex(settings_, "TOHKU_PITCH_DOWN")-axes_size];
+      return joy_msg_.buttons[TOHKU_PITCH_UP_index-axes_size] - joy_msg_.buttons[TOHKU_PITCH_DOWN_index-axes_size];
   }
   else if (joint_name == "TOHKU_ROLL")
   {
-    int TOHKU_ROLL_index = getStringIndex(settings_, "TOHKU_ROLL_UP");
+    int TOHKU_ROLL_UP_index;
+    int TOHKU_ROLL_DOWN_index;
+    getStringIndex(TOHKU_ROLL_UP_index, settings_,    "TOHKU_ROLL_UP");
+    getStringIndex(TOHKU_ROLL_DOWN_index, settings_,  "TOHKU_ROLL_DOWN");
 
-    if (TOHKU_ROLL_index < axes_size)
-      return joy_msg_.axes[getStringIndex(settings_, "TOHKU_ROLL_UP")] - joy_msg_.axes[getStringIndex(settings_, "TOHKU_ROLL_DOWN")];
+    if (TOHKU_ROLL_UP_index < axes_size)
+      return joy_msg_.axes[TOHKU_ROLL_UP_index] - joy_msg_.axes[TOHKU_ROLL_DOWN_index];
     else
-      return joy_msg_.buttons[getStringIndex(settings_, "TOHKU_ROLL_UP")-axes_size] - joy_msg_.buttons[getStringIndex(settings_, "TOHKU_ROLL_DOWN")-axes_size];
+      return joy_msg_.buttons[TOHKU_ROLL_UP_index-axes_size] - joy_msg_.buttons[TOHKU_ROLL_DOWN_index-axes_size];
   }
   else if (joint_name == "MANIELBOW")
   {
-    int MANIELBOW_index = getStringIndex(settings_, "MANIELBOW_UP");
+    int MANIELBOW_UP_index;
+    int MANIELBOW_DOWN_index;
+    getStringIndex(MANIELBOW_UP_index, settings_,    "MANIELBOW_UP");
+    getStringIndex(MANIELBOW_DOWN_index, settings_,  "MANIELBOW_DOWN");
 
-    if (MANIELBOW_index < axes_size)
-      return joy_msg_.axes[getStringIndex(settings_, "MANIELBOW_UP")] - joy_msg_.axes[getStringIndex(settings_, "MANIELBOW_DOWN")];
+    if (MANIELBOW_UP_index < axes_size)
+      return joy_msg_.axes[MANIELBOW_UP_index] - joy_msg_.axes[MANIELBOW_DOWN_index];
     else
-      return joy_msg_.buttons[getStringIndex(settings_, "MANIELBOW_UP")-axes_size] - joy_msg_.buttons[getStringIndex(settings_, "MANIELBOW_DOWN")-axes_size];
+      return joy_msg_.buttons[MANIELBOW_UP_index-axes_size] - joy_msg_.buttons[MANIELBOW_DOWN_index-axes_size];
   }
   else if (joint_name == "YAWJOINT")
   {
-    int YAWJOINT_index = getStringIndex(settings_, "YAWJOINT_UP");
+    int YAWJOINT_UP_index;
+    int YAWJOINT_DOWN_index;
+    getStringIndex(YAWJOINT_UP_index, settings_,    "YAWJOINT_UP");
+    getStringIndex(YAWJOINT_DOWN_index, settings_,  "YAWJOINT_DOWN");
 
-    if (YAWJOINT_index < axes_size)
-      return joy_msg_.axes[getStringIndex(settings_, "YAWJOINT_UP")] - joy_msg_.axes[getStringIndex(settings_, "YAWJOINT_DOWN")];
+    if (YAWJOINT_UP_index < axes_size)
+      return joy_msg_.axes[YAWJOINT_UP_index] - joy_msg_.axes[YAWJOINT_DOWN_index];
     else
-      return joy_msg_.buttons[getStringIndex(settings_, "YAWJOINT_UP")-axes_size] - joy_msg_.buttons[getStringIndex(settings_, "YAWJOINT_DOWN")-axes_size];
+      return joy_msg_.buttons[YAWJOINT_UP_index-axes_size] - joy_msg_.buttons[YAWJOINT_DOWN_index-axes_size];
   }
   else if (joint_name == "TOHKU_TIP_01" || joint_name == "TOHKU_TIP_02")
   {
-    int TOHKU_TIP_index = getStringIndex(settings_, "TOHKU_TIP");
+    int TOHKU_TIP_index;
+    getStringIndex(TOHKU_TIP_index, settings_, "TOHKU_TIP");
 
     if (TOHKU_TIP_index < axes_size)
       return joy_msg_.axes[TOHKU_TIP_index];
@@ -140,7 +155,8 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   }
   else if (joint_name == "PUSHROD")
   {
-    int PUSHROD_index = getStringIndex(settings_, "PUSHROD");
+    int PUSHROD_index;
+    getStringIndex(PUSHROD_index, settings_, "PUSHROD");
 
     if (PUSHROD_index < axes_size)
       return joy_msg_.axes[PUSHROD_index];
@@ -149,28 +165,32 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   }
   else
   {
-    int index = getStringIndex(settings_, joint_name);
+    int index;
+    getStringIndex(index, settings_, joint_name);
 
     if (index == 22)
       return 0.0;
     else if (index < axes_size)
-      return joy_msg_.axes[getStringIndex(settings_, joint_name)];
+      return joy_msg_.axes[index];
     else
-      return joy_msg_.buttons[getStringIndex(settings_, joint_name)-axes_size];
+      return joy_msg_.buttons[index-axes_size];
   }
   
 }
 
-int RtrJoyconState::getStringIndex(const std::vector<std::string> str_vec, const std::string string)
+bool RtrJoyconState::getStringIndex(int &index, 
+                                    const std::vector<std::string> str_vec, 
+                                    const std::string string)
 {
-  int index = 0;
+  index = 0;
   while (str_vec.size() > index)
   {
     if (str_vec[index] == string) break;
     index++;
   }
 
-  return index;
+  if (index == str_vec.size()) return false;
+  else return false;
 }
 
 void RtrJoyconState::readYaml(const std::string config)
@@ -209,7 +229,9 @@ void RtrJoyconState::updateJoyMsg(const sensor_msgs::Joy& joy_msg)
 void RtrJoyconState::updateState(void)
 {
   int max_config_num = 2;
-  int STATE_index = getStringIndex(settings_, "STATE") - joy_msg_.axes.size();
+  int index;
+  getStringIndex(index, settings_, "STATE");
+  int STATE_index = index - joy_msg_.axes.size();
 
   if (joy_msg_buf_.buttons[STATE_index] < joy_msg_.buttons[STATE_index])
   {

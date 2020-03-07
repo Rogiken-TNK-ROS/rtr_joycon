@@ -37,7 +37,7 @@ private:
 private:
   void updateJoyMsg(const sensor_msgs::Joy& joy_msg);
   float jogCommandSet(const std::string joint_name);
-  int getStringIndex(const std::vector<std::string> str_vec, const std::string string);
+  bool getStringIndex(int &index, const std::vector<std::string> str_vec, const std::string string);
   void readYaml(const std::string config);
   void updateState(void);
 
