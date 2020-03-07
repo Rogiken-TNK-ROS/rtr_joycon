@@ -51,6 +51,7 @@ void RtrJoyconState::publish(void)
     jog_joint.joint_names.push_back(joint_name);
     jog_joint.deltas.push_back(speed_rate_ * jogCommandSet(joint_name));
   }
+  // ROS_INFO_STREAM(jog_joint);
   jog_joint_pub_.publish(jog_joint);
 
   // tohoku_gripper
@@ -99,8 +100,11 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   {
     int TOHKU_PITCH_UP_index;
     int TOHKU_PITCH_DOWN_index;
-    getStringIndex(TOHKU_PITCH_UP_index, settings_,   "TOHKU_PITCH_UP");
-    getStringIndex(TOHKU_PITCH_DOWN_index, settings_, "TOHKU_PITCH_DOWN");
+    if (!getStringIndex(TOHKU_PITCH_UP_index, settings_,   "TOHKU_PITCH_UP") ||
+        !getStringIndex(TOHKU_PITCH_DOWN_index, settings_, "TOHKU_PITCH_DOWN"))
+    {
+      return 0.0;
+    }
 
     if (TOHKU_PITCH_UP_index < axes_size)
       return joy_msg_.axes[TOHKU_PITCH_UP_index] - joy_msg_.axes[TOHKU_PITCH_DOWN_index];
@@ -111,8 +115,11 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   {
     int TOHKU_ROLL_UP_index;
     int TOHKU_ROLL_DOWN_index;
-    getStringIndex(TOHKU_ROLL_UP_index, settings_,    "TOHKU_ROLL_UP");
-    getStringIndex(TOHKU_ROLL_DOWN_index, settings_,  "TOHKU_ROLL_DOWN");
+    if (!getStringIndex(TOHKU_ROLL_UP_index, settings_,   "TOHKU_ROLL_UP") ||
+        !getStringIndex(TOHKU_ROLL_DOWN_index, settings_, "TOHKU_ROLL_DOWN"))
+    {
+      return 0.0;
+    }
 
     if (TOHKU_ROLL_UP_index < axes_size)
       return joy_msg_.axes[TOHKU_ROLL_UP_index] - joy_msg_.axes[TOHKU_ROLL_DOWN_index];
@@ -123,8 +130,11 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   {
     int MANIELBOW_UP_index;
     int MANIELBOW_DOWN_index;
-    getStringIndex(MANIELBOW_UP_index, settings_,    "MANIELBOW_UP");
-    getStringIndex(MANIELBOW_DOWN_index, settings_,  "MANIELBOW_DOWN");
+    if (!getStringIndex(MANIELBOW_UP_index, settings_,   "MANIELBOW_UP") ||
+        !getStringIndex(MANIELBOW_DOWN_index, settings_, "MANIELBOW_DOWN"))
+    {
+      return 0.0;
+    }
 
     if (MANIELBOW_UP_index < axes_size)
       return joy_msg_.axes[MANIELBOW_UP_index] - joy_msg_.axes[MANIELBOW_DOWN_index];
@@ -135,8 +145,11 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   {
     int YAWJOINT_UP_index;
     int YAWJOINT_DOWN_index;
-    getStringIndex(YAWJOINT_UP_index, settings_,    "YAWJOINT_UP");
-    getStringIndex(YAWJOINT_DOWN_index, settings_,  "YAWJOINT_DOWN");
+    if (!getStringIndex(YAWJOINT_UP_index, settings_,   "YAWJOINT_UP") ||
+        !getStringIndex(YAWJOINT_DOWN_index, settings_, "YAWJOINT_DOWN"))
+    {
+      return 0.0;
+    }
 
     if (YAWJOINT_UP_index < axes_size)
       return joy_msg_.axes[YAWJOINT_UP_index] - joy_msg_.axes[YAWJOINT_DOWN_index];
@@ -146,7 +159,10 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   else if (joint_name == "TOHKU_TIP_01" || joint_name == "TOHKU_TIP_02")
   {
     int TOHKU_TIP_index;
-    getStringIndex(TOHKU_TIP_index, settings_, "TOHKU_TIP");
+    if (!getStringIndex(TOHKU_TIP_index, settings_, "TOHKU_TIP"))
+    {
+      return 0.0;
+    }
 
     if (TOHKU_TIP_index < axes_size)
       return joy_msg_.axes[TOHKU_TIP_index];
@@ -156,7 +172,10 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   else if (joint_name == "PUSHROD")
   {
     int PUSHROD_index;
-    getStringIndex(PUSHROD_index, settings_, "PUSHROD");
+    if (!getStringIndex(PUSHROD_index, settings_, "PUSHROD"))
+    {
+      return 0.0;
+    }
 
     if (PUSHROD_index < axes_size)
       return joy_msg_.axes[PUSHROD_index];
@@ -166,11 +185,12 @@ float RtrJoyconState::jogCommandSet(const std::string joint_name)
   else
   {
     int index;
-    getStringIndex(index, settings_, joint_name);
-
-    if (index == 22)
+    if (!getStringIndex(index, settings_, joint_name))
+    {
       return 0.0;
-    else if (index < axes_size)
+    }
+
+    if (index < axes_size)
       return joy_msg_.axes[index];
     else
       return joy_msg_.buttons[index-axes_size];
@@ -190,7 +210,7 @@ bool RtrJoyconState::getStringIndex(int &index,
   }
 
   if (index == str_vec.size()) return false;
-  else return false;
+  else return true;
 }
 
 void RtrJoyconState::readYaml(const std::string config)
