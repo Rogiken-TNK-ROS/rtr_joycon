@@ -28,8 +28,18 @@ void RtrJoyconState::publish(void)
 {
   // cmd_vel
   geometry_msgs::Twist cmd_vel;
-  cmd_vel.linear.x  = joy_msg_.axes[getStringIndex(settings_, "STEERING_X")];
-  cmd_vel.angular.z = joy_msg_.axes[getStringIndex(settings_, "STEERING_Z")];
+  int steer_x_index = getStringIndex(settings_, "STEERING_X");
+  int steer_z_index = getStringIndex(settings_, "STEERING_Z");
+  if (steer_x_index == settings_.size())
+  {
+    cmd_vel.linear.x  = 0.0;
+    cmd_vel.angular.z = 0.0;
+  }
+  else 
+  {
+    cmd_vel.linear.x  = joy_msg_.axes[steer_x_index];
+    cmd_vel.angular.z = joy_msg_.axes[steer_z_index];
+  }
   cmd_vel_pub_.publish(cmd_vel);
 
   // jog_msgs
