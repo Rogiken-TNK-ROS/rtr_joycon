@@ -10,11 +10,14 @@ RtrJoyconState::RtrJoyconState(ros::NodeHandle& nh)
                     "UFRAME", "MNP_SWING", "MANIBOOM", "MANIARM","MANIELBOW", 
                     "YAWJOINT", "HANDBASE", "TOHKU_TIP_01", "TOHKU_TIP_02", "PUSHROD" }),
     tohoku_gipper_joint_names_({"TOHKU_TIP_01", "TOHKU_TIP_02"}),
-    mani_gipper_joint_names_({"PUSHROD"})
+    mani_gipper_joint_names_({"PUSHROD"}),
+    group_names_({"tohoku_arm", "mani_arm"}),
+    link_names_({"TOHKU_ROLL", "HANDBASE"})
 {
   joy_node_sub_ = nh_.subscribe("joy", 10, &RtrJoyconState::updateJoyMsg, this);
   cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/RTRDoubleArmV7/base_controller/cmd_vel", 10);
   jog_joint_pub_ = nh_.advertise<jog_msgs::JogJoint>("/jog_joint", 10);
+  jog_frame_pub_ = nh_.advertise<jog_msgs::JogFrame>("/jog_frame", 10);
   tohoku_trajectory_pub_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/RTRDoubleArmV7/tohoku_gripper_controller/command", 10);
   mani_trajectory_pub_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/RTRDoubleArmV7/mani_gripper_controller/command", 10);
 
@@ -44,15 +47,32 @@ void RtrJoyconState::publish(void)
   }
   cmd_vel_pub_.publish(cmd_vel);
 
-  // jog_msgs
-  jog_msgs::JogJoint jog_joint;
-  for (auto joint_name : joint_names_)
+  // // jog_msgs
+  // jog_msgs::JogJoint jog_joint;
+  // for (auto joint_name : joint_names_)
+  // {
+  //   jog_joint.joint_names.push_back(joint_name);
+  //   jog_joint.deltas.push_back(speed_rate_ * jogCommandSet(joint_name));
+  // }
+  // jog_joint_pub_.publish(jog_joint);
+
+  // jog_frame
+  if (config_num_ == 1)
   {
-    jog_joint.joint_names.push_back(joint_name);
-    jog_joint.deltas.push_back(speed_rate_ * jogCommandSet(joint_name));
+    jog_msgs::JogFrame jog_frame;
+    jog_frame.header.frame_id = "base_footprint";
+    jog_frame.group_name = group_names_[0];
+    jog_frame.link_name = link_names_[0];
+    jog_frame.linear_delta.x = 0.01 * joy_msg_.axes[7];
+    jog_frame.linear_delta.y = 0.01 * joy_msg_.axes[6];
+    jog_frame.linear_delta.z = 0.01 * (joy_msg_.buttons[5] - joy_msg_.buttons[4]);
+    jog_frame.angular_delta.x = 0.01 * (joy_msg_.buttons[1] - joy_msg_.buttons[3]);
+    jog_frame.angular_delta.y = 0.01 * (joy_msg_.buttons[0] - joy_msg_.buttons[2]);
+    jog_frame.angular_delta.z = 0.00;
+    jog_frame.avoid_collisions = false;
+    jog_frame.header.stamp = ros::Time::now();
+    jog_frame_pub_.publish(jog_frame);
   }
-  // ROS_INFO_STREAM(jog_joint);
-  jog_joint_pub_.publish(jog_joint);
 
   // tohoku_gripper
   trajectory_msgs::JointTrajectory tohoku_trajectory;
