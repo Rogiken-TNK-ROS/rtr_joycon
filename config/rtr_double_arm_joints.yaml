@@ -1,27 +1,28 @@
-rtr_double_arm:
-  joints:
-    - "MFRAME"
-    - "BLOCK"
-    - "BOOM"
-    - "ARM"
-    - "TOHKU_PITCH"
-    - "TOHKU_ROLL"
-    - "UFRAME"
-    - "MNP_SWING"
-    - "MANIBOOM"
-    - "MANIARM"
-    - "MANIELBOW"
-    - "YAWJOINT"
-    - "HANDBASE"
-    - "TOHKU_TIP_01"
-    - "TOHKU_TIP_02"
-    - "PUSHROD"
+RTRDoubleArmV7:
+  rtr_double_arm:
+    joints:
+      - "MFRAME"
+      - "BLOCK"
+      - "BOOM"
+      - "ARM"
+      - "TOHKU_PITCH"
+      - "TOHKU_ROLL"
+      - "UFRAME"
+      - "MNP_SWING"
+      - "MANIBOOM"
+      - "MANIARM"
+      - "MANIELBOW"
+      - "YAWJOINT"
+      - "HANDBASE"
+      - "TOHKU_TIP_01"
+      - "TOHKU_TIP_02"
+      - "PUSHROD"
 
-tohoku_gipper:
-  joints:
-    - 
-    - 
+  tohoku_gipper:
+    joints:
+      - TOHKU_TIP_01
+      - TOHKU_TIP_02
 
-mani_gipper:
-  joints:
-    -
+  mani_gipper:
+    joints:
+      - PUSHROD
