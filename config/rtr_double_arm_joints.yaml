@@ -1,0 +1,27 @@
+rtr_double_arm:
+  joints:
+    - "MFRAME"
+    - "BLOCK"
+    - "BOOM"
+    - "ARM"
+    - "TOHKU_PITCH"
+    - "TOHKU_ROLL"
+    - "UFRAME"
+    - "MNP_SWING"
+    - "MANIBOOM"
+    - "MANIARM"
+    - "MANIELBOW"
+    - "YAWJOINT"
+    - "HANDBASE"
+    - "TOHKU_TIP_01"
+    - "TOHKU_TIP_02"
+    - "PUSHROD"
+
+tohoku_gipper:
+  joints:
+    - 
+    - 
+
+mani_gipper:
+  joints:
+    -

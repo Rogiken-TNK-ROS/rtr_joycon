@@ -19,18 +19,18 @@ config_0:
   button_start:         none
   button_home:          none
 config_1:
-  stick_left_H:         none
-  stick_left_V:         none
-  stick_right_H:        none
-  stick_right_V:        none
-  button_up_down:       TOHKU_X
-  button_left_right:    TOHKU_Y
+  stick_left_H:         MFRAME
+  stick_left_V:         BOOM
+  stick_right_H:        BLOCK
+  stick_right_V:        ARM
+  button_up_down:       none
+  button_left_right:    none
   button_A:             TOHKU_PITCH_DOWN
   button_B:             TOHKU_ROLL_DOWN
   button_Y:             TOHKU_PITCH_UP
   button_X:             TOHKU_ROLL_UP
-  button_l1:            TOHKU_Z_DOWN
-  button_r1:            TOHKU_Z_UP
+  button_l1:            none
+  button_r1:            none
   button_l2:            none
   button_r2:            TOHKU_TIP
   button_l3:            none
