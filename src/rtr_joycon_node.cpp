@@ -7,8 +7,11 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;
   ros::Rate loop_rate(10);
 
+  RTRJoycon joycon(nh);
+
   while (ros::ok())
   {
+    joycon.publish();
     ros::spinOnce();
     loop_rate.sleep();
   }
