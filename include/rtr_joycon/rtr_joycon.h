@@ -24,14 +24,17 @@ private:
   std::vector<std::string> tohoku_gipper_joint_names_;  // yamlファイルから読み取ったtohoku_gipperのjoint_name
   std::vector<std::string> mani_gipper_joint_names_;    // yamlファイルから読み取ったmani_gipperのjoint_name
 
-  const float speed_rate_ = 0.2;    // 速度ゲイン
-  int key_config_index_;            // 設定されているキー設定index
+  const float speed_gain_ = 0.2;    // 速度ゲイン
+  int key_config_index_;            // キー設定のindex
   std::vector<std::string> key_config_;   // yamlファイルから読み取ったキー設定
+
+  geometry_msgs::Twist cmd_vel_;  // 指令値[twist]
+  jog_msgs::JogFrame jog_frame_;  // 指令値[jog_frame]
 
 private:
   void updateJoyMsg(const sensor_msgs::Joy& joy_msg);           // メンバ変数joy_msg_の更新関数（callback）
   std::vector<std::string> readYaml(const std::string path);    // pathに該当するyaml内の値を返す関数
-  bool getKeyConfig(const int config_num);                      // キーコンフィグを取得する関数
+  bool setKeyConfig(const int config_num);                      // キー設定をkey_config_にセットする関数
   bool getStringIndex(int &index, const std::vector<std::string> str_vec, const std::string string);
 };
 

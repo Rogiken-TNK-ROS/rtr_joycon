@@ -14,18 +14,34 @@ RTRJoycon::RTRJoycon(ros::NodeHandle& nh)
 
   joy_msg_.axes = {0};
   joy_msg_.buttons = {0};
-  if (!getKeyConfig(key_config_index_)) ROS_ERROR("Failed to get key_config.");
+  if (!setKeyConfig(key_config_index_)) ROS_ERROR("Failed to set key_config.");
 }
 
 void RTRJoycon::updateJoyMsg(const sensor_msgs::Joy& joy_msg)
 {
-  // optionボタンが押下されたときの処理
+  // optionボタンが押下された場合の処理
   int option_index = 9;
   if (joy_msg_.buttons[option_index] < joy_msg.buttons[option_index])
   {
+    // key_config_index_の切り替え & key_configの更新
     key_config_index_++;
-    if (2 < key_config_index_) key_config_index_ = 0;   // reset config index
-    if (!getKeyConfig(key_config_index_)) ROS_ERROR("Failed to get key_config.");
+    int index_max_num = 2;  // yamlに設定されているconfigの総数
+    if (index_max_num < key_config_index_) key_config_index_ = 0;   // reset key_config index
+    if (!setKeyConfig(key_config_index_)) ROS_ERROR("Failed to set key_config.");
+
+    // 指令値の初期化
+    cmd_vel_.angular.x = 0.0;
+    cmd_vel_.angular.y = 0.0;
+    cmd_vel_.angular.z = 0.0;
+    cmd_vel_.linear.x = 0.0;
+    cmd_vel_.linear.y = 0.0;
+    cmd_vel_.linear.z = 0.0;
+    jog_frame_.angular_delta.x = 0.0;
+    jog_frame_.angular_delta.y = 0.0;
+    jog_frame_.angular_delta.z = 0.0;
+    jog_frame_.linear_delta.x = 0.0;
+    jog_frame_.linear_delta.y = 0.0;
+    jog_frame_.linear_delta.z = 0.0;
   }
   
   // update member variable
@@ -39,25 +55,29 @@ void RTRJoycon::publish(void)
   // std::cout << mani_gipper_joint_names_.size() << std::endl;
   // std::cout << key_config_.size() << std::endl;
   // std::cout << key_config_index_ << std::endl;
+  // std::cout << "axes :" << joy_msg_.axes.size() << std::endl;
+  // std::cout << "buttons :" << joy_msg_.buttons.size() << std::endl;
   // for (int i=0;i<22;i++)
   //   std::cout << key_config_[i] << std::endl;
 }
 
-// pathに該当するyaml内の値を返す関数
+// pathに該当するyaml内の値を返すmethod
 std::vector<std::string> RTRJoycon::readYaml(const std::string path)
 {
   std::vector<std::string> param_list;
   if (!nh_.getParam(path, param_list))
-    ROS_ERROR("Failed to get parameter from yaml file.");
+  {
+    std::string error_str = "Failed to get parameter[" + path + "] from yaml file.";
+    ROS_ERROR_STREAM(error_str);
+  }
   return param_list;
 }
 
-// キーコンフィグを取得する関数
-bool RTRJoycon::getKeyConfig(const int config_num)
+// キーコンフィグを取得するmethod
+bool RTRJoycon::setKeyConfig(const int config_num)
 {
   std::string num;
   num = std::to_string(config_num);
-  std::cout << "key_config setting is -> " << config_num << std::endl;
   std::string config_path = "/config_" + std::to_string(config_num) + "/";
   if (!nh_.getParam(config_path + "stick_left_H",   key_config_.at(0))) return false;
   if (!nh_.getParam(config_path + "stick_left_V",   key_config_.at(1))) return false;
@@ -81,6 +101,7 @@ bool RTRJoycon::getKeyConfig(const int config_num)
   if (!nh_.getParam(config_path + "button_l3",      key_config_.at(19))) return false;
   if (!nh_.getParam(config_path + "button_r3",      key_config_.at(20))) return false;
 
+  std::cout << "key_config setted as -> config_" << config_num << std::endl;
   return true;
 }
 
