@@ -21,7 +21,7 @@ setting_0:
     button_r2:            none
     button_l3:            none
     button_r3:            none
-    button_option:        NC
+    button_option:        OPTION
     button_start:         none
     button_home:          none
 
@@ -48,7 +48,7 @@ setting_1:
     button_r2:            TOHKU_TIP
     button_l3:            none
     button_r3:            none
-    button_option:        NC
+    button_option:        OPTION
     button_start:         none
     button_home:          none
 
@@ -75,7 +75,7 @@ setting_2:
     button_r2:            TOHKU_TIP
     button_l3:            none
     button_r3:            none
-    button_option:        NC
+    button_option:        OPTION
     button_start:         none
     button_home:          none
 
@@ -102,7 +102,7 @@ setting_3:
     button_r2:            PUSHROD
     button_l3:            none
     button_r3:            none
-    button_option:        NC
+    button_option:        OPTION
     button_start:         none
     button_home:          none
 
@@ -129,6 +129,6 @@ setting_4:
     button_r2:            PUSHROD
     button_l3:            none
     button_r3:            none
-    button_option:        NC
+    button_option:        OPTION
     button_start:         none
     button_home:          none
