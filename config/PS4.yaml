@@ -1,62 +1,134 @@
-config_0:
-  stick_left_H:         STEERING_Z
-  stick_left_V:         STEERING_X
-  stick_right_H:        none
-  stick_right_V:        none
-  button_H:             none
-  button_V:             none
-  button_A:             none
-  button_B:             none
-  button_Y:             none
-  button_X:             none
-  button_l1:            none
-  button_r1:            none
-  button_l2:            none
-  button_r2:            none
-  button_l3:            none
-  button_r3:            none
-  button_option:        NC
-  button_start:         none
-  button_home:          none
+setting_0:
+  setting_info:
+    function: move
+    target: base_foot
+    topic_type: cmd_vel
+    topic_path: /RTRDoubleArmV7/base_controller/cmd_vel
+  key_config:
+    stick_left_H:         STEERING_Z
+    stick_left_V:         STEERING_X
+    stick_right_H:        none
+    stick_right_V:        none
+    button_H:             none
+    button_V:             none
+    button_A:             none
+    button_B:             none
+    button_Y:             none
+    button_X:             none
+    button_l1:            none
+    button_r1:            none
+    button_l2:            none
+    button_r2:            none
+    button_l3:            none
+    button_r3:            none
+    button_option:        NC
+    button_start:         none
+    button_home:          none
 
-config_1:
-  stick_left_H:         MFRAME
-  stick_left_V:         BOOM
-  stick_right_H:        BLOCK
-  stick_right_V:        ARM
-  button_H:             none
-  button_V:             none
-  button_A:             TOHKU_PITCH_DOWN
-  button_B:             TOHKU_ROLL_DOWN
-  button_Y:             TOHKU_PITCH_UP
-  button_X:             TOHKU_ROLL_UP
-  button_l1:            none
-  button_r1:            none
-  button_l2:            none
-  button_r2:            TOHKU_TIP
-  button_l3:            none
-  button_r3:            none
-  button_option:        NC
-  button_start:         none
-  button_home:          none
+setting_1:
+  setting_info:
+    function: work
+    target: tohoku_gipper
+    topic_type: jog_frame
+    topic_path: /jog_frame
+  key_config:
+    stick_left_H:         MFRAME
+    stick_left_V:         BOOM
+    stick_right_H:        BLOCK
+    stick_right_V:        ARM
+    button_H:             none
+    button_V:             none
+    button_A:             TOHKU_PITCH_DOWN
+    button_B:             TOHKU_ROLL_DOWN
+    button_Y:             TOHKU_PITCH_UP
+    button_X:             TOHKU_ROLL_UP
+    button_l1:            none
+    button_r1:            none
+    button_l2:            none
+    button_r2:            TOHKU_TIP
+    button_l3:            none
+    button_r3:            none
+    button_option:        NC
+    button_start:         none
+    button_home:          none
 
-config_2:
-  stick_left_H:         UFRAME
-  stick_left_V:         MANIBOOM
-  stick_right_H:        MNP_SWING
-  stick_right_V:        MANIARM
-  button_H:             none
-  button_V:             none
-  button_A:             MANIELBOW_DOWN
-  button_B:             YAWJOINT_DOWN
-  button_Y:             MANIELBOW_UP
-  button_X:             YAWJOINT_UP
-  button_l1:            none
-  button_r1:            none
-  button_l2:            none
-  button_r2:            PUSHROD
-  button_l3:            none
-  button_r3:            none
-  button_option:        NC
-  button_start:         none
-  button_home:          none
+setting_2:
+  setting_info:
+    function: work
+    target: tohoku_gipper
+    topic_type: jog_frame
+    topic_path: /jog_frame
+  key_config:
+    stick_left_H:         MFRAME
+    stick_left_V:         BOOM
+    stick_right_H:        BLOCK
+    stick_right_V:        ARM
+    button_H:             none
+    button_V:             none
+    button_A:             TOHKU_PITCH_DOWN
+    button_B:             TOHKU_ROLL_DOWN
+    button_Y:             TOHKU_PITCH_UP
+    button_X:             TOHKU_ROLL_UP
+    button_l1:            none
+    button_r1:            none
+    button_l2:            none
+    button_r2:            TOHKU_TIP
+    button_l3:            none
+    button_r3:            none
+    button_option:        NC
+    button_start:         none
+    button_home:          none
+
+setting_3:
+  setting_info:
+    function: work
+    target: mani_gipper
+    topic_type: jog_frame
+    topic_path: /jog_frame
+  key_config:
+    stick_left_H:         UFRAME
+    stick_left_V:         MANIBOOM
+    stick_right_H:        MNP_SWING
+    stick_right_V:        MANIARM
+    button_H:             none
+    button_V:             none
+    button_A:             MANIELBOW_DOWN
+    button_B:             YAWJOINT_DOWN
+    button_Y:             MANIELBOW_UP
+    button_X:             YAWJOINT_UP
+    button_l1:            none
+    button_r1:            none
+    button_l2:            none
+    button_r2:            PUSHROD
+    button_l3:            none
+    button_r3:            none
+    button_option:        NC
+    button_start:         none
+    button_home:          none
+
+setting_4:
+  setting_info:
+    function: work
+    target: mani_gipper
+    topic_type: jog_frame
+    topic_path: /jog_frame
+  key_config:
+    stick_left_H:         UFRAME
+    stick_left_V:         MANIBOOM
+    stick_right_H:        MNP_SWING
+    stick_right_V:        MANIARM
+    button_H:             none
+    button_V:             none
+    button_A:             MANIELBOW_DOWN
+    button_B:             YAWJOINT_DOWN
+    button_Y:             MANIELBOW_UP
+    button_X:             YAWJOINT_UP
+    button_l1:            none
+    button_r1:            none
+    button_l2:            none
+    button_r2:            PUSHROD
+    button_l3:            none
+    button_r3:            none
+    button_option:        NC
+    button_start:         none
+    button_home:          none
