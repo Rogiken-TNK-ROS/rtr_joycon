@@ -19,10 +19,18 @@ RTRDoubleArmV7:
       - "PUSHROD"
 
   tohoku_gipper:
+    group_name:
+      - tohoku_arm
+    link_name:
+      - TOHKU_ROLL
     joints:
       - TOHKU_TIP_01
       - TOHKU_TIP_02
 
   mani_gipper:
+    group_name:
+      - mani_arm
+    link_name:
+      - HANDBASE
     joints:
       - PUSHROD
