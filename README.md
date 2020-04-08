@@ -17,7 +17,7 @@ This package converts commands from joy_node into command values for the RTRDoub
   - PS4.yaml (**configurable**)
     - [key map](https://github.com/calm0815/rtr_joycon/blob/master/config/memo.md)
     - key configuration file  
-    You can switch the settings by pressing the option button
+    **Note** : You can switch the settings by pressing the option button
       - setting_0 : robot movement
       - setting_1 : work of tohoku_arm (using jog_joint)
       - setting_2 : work of tohoku_arm (using jog_frame)
