@@ -1,4 +1,4 @@
-# Correspondence between / joy elements and controller buttons
+# Key map about /joy
 
 ## PS4 Dual shock Controller (USB connected)
 
