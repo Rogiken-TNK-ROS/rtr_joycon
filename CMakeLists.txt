@@ -28,10 +28,10 @@ include_directories(
 )
 
 add_executable(rtr_joycon
-  src/rtr_joycon.cpp
-  src/rtr_joycon_state.cpp)
+src/rtr_joycon.cpp
+src/rtr_joycon_node.cpp)
 target_link_libraries(rtr_joycon
-  ${catkin_LIBRARIES})
+${catkin_LIBRARIES})
 
 #############
 ## Install ##

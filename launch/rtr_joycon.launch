@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="joy_dev" default="/dev/input/js0" />
-  <rosparam file="$(find rtr_joycon)/config/PS4.yaml" command="load" />
+  <rosparam file="$(find rtr_joycon)/config/PS4_key_names.yaml" command="load"/>
+  <rosparam file="$(find rtr_joycon)/config/PS4.yaml" command="load"/>
+  <rosparam file="$(find rtr_joycon)/config/rtr_double_arm_joints.yaml" command="load"/>
 
   <node pkg="joy" type="joy_node" name="joy_node">
     <param name="dev" value="$(arg joy_dev)" />
