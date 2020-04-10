@@ -1,0 +1,27 @@
+setting_0:
+  cross_key:            crawler
+  L1+L_stick:           crawler
+  L1+R_stick:           crawler
+  L_stick_H:            arm_base_YAW
+  R_stick_H:            1st_joint_YAW
+  L_stick_V:            1st_joint_PITCH
+  R_stick_V:            2nd_joint_PITCH
+  Y_A_button:           end_effector_PITCH
+  X_B_button:           end_effector_YAW
+  L1+X_B_button:        end_effector_ROLL
+  R1+R2:                end_effector_motion
+  option_button:        switch_arm
+
+setting_1:
+  cross_key:            crawler
+  L1+L_stick:           crawler
+  L1+R_stick:           crawler
+  L_stick_H:            arm_base_YAW
+  R_stick_H:            1st_joint_YAW
+  L_stick_V:            1st_joint_PITCH
+  R_stick_V:            2nd_joint_PITCH
+  Y_A_button:           end_effector_PITCH
+  X_B_button:           end_effector_YAW
+  L1+X_B_button:        end_effector_ROLL
+  R1+R2:                end_effector_motion
+  option_button:        switch_arm
