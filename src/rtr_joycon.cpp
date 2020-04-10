@@ -60,6 +60,7 @@ void RTRJoycon::publish(void)
   L1_enable_pub_.publish(L1_enable_);
   R1_enable_pub_.publish(R1_enable_);
   mani_arm_enable_pub_.publish(mani_arm_enable_);
+
   cmd_vel_pub_.publish(cmd_vel_);
   jog_joint_pub_.publish(jog_joint_);
 }
@@ -173,12 +174,14 @@ bool RTRJoycon::setCommand(std::string task, float positive=0.0, float negative=
       for (auto joint_name : tohoku_gipper_joint_names_)
       {
         trajectory_.joint_names.push_back(joint_name);
-        trajectory_point_.positions.push_back(0.349065850399 / 2.0 * (joy_msg_.axes[5] - 1.0));
+        trajectory_point_.positions.push_back(-0.349065850399 * abs((positive + speed_gain_)/2));
       }
       ros::Duration time(1.0);
       trajectory_point_.time_from_start = time;
       trajectory_.points.push_back(trajectory_point_);
-
+      trajectory_pub_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/RTRDoubleArmV7/tohoku_gripper_controller/command", 10);
+      trajectory_pub_.publish(trajectory_);
+    
       return true;
     }
     else
@@ -190,11 +193,15 @@ bool RTRJoycon::setCommand(std::string task, float positive=0.0, float negative=
       for (auto joint_name : mani_gipper_joint_names_)
       {
         trajectory_.joint_names.push_back(joint_name);
-        trajectory_point_.positions.push_back(0.05 / 2.0 * (joy_msg_.axes[5] - 1.0));
+        trajectory_point_.positions.push_back(-0.05 * abs((positive + speed_gain_)/2));
       }
       ros::Duration time(1.0);
       trajectory_point_.time_from_start = time;
       trajectory_.points.push_back(trajectory_point_);
+      trajectory_pub_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/RTRDoubleArmV7/mani_gripper_controller/command", 10);
+      trajectory_pub_.publish(trajectory_);
+
+      return true;
     }
   }
 
