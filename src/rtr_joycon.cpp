@@ -21,7 +21,7 @@ void RTRJoycon::updateJoyMsg(const sensor_msgs::Joy& joy_msg)
 {
   // optionボタンが押下された場合の処理
   const std::string OPTION = "OPTION";
-  const int option_index = getStringIndex(key_config_, OPTION) - joy_msg_.axes.size() + 1;
+  const int option_index = getIndexFromVector(key_config_, OPTION) - joy_msg_.axes.size() + 1;
   if (joy_msg_.buttons[option_index] < joy_msg.buttons[option_index])
   {
     // key_config_index_の切り替え & key_configの更新
@@ -50,9 +50,9 @@ void RTRJoycon::publish(void)
     {
       // cmd_vel
       const std::string STEERING_X = "STEERING_X";
-      const int steer_x_index = getStringIndex(key_config_, STEERING_X);
+      const int steer_x_index = getIndexFromVector(key_config_, STEERING_X);
       const std::string STEERING_Z = "STEERING_Z";
-      const int steer_z_index = getStringIndex(key_config_, STEERING_Z);
+      const int steer_z_index = getIndexFromVector(key_config_, STEERING_Z);
       if (steer_x_index < 0 || steer_z_index < 0)
       {
         cmd_vel_.linear.x  = 0.0;
@@ -202,9 +202,9 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   if (joint_name == "TOHKU_PITCH")
   {
     const std::string TOHKU_PITCH_UP = "TOHKU_PITCH_UP";
-    const int TOHKU_PITCH_UP_index = getStringIndex(key_config_, TOHKU_PITCH_UP);
+    const int TOHKU_PITCH_UP_index = getIndexFromVector(key_config_, TOHKU_PITCH_UP);
     const std::string TOHKU_PITCH_DOWN = "TOHKU_PITCH_DOWN";
-    const int TOHKU_PITCH_DOWN_index = getStringIndex(key_config_, TOHKU_PITCH_DOWN);
+    const int TOHKU_PITCH_DOWN_index = getIndexFromVector(key_config_, TOHKU_PITCH_DOWN);
     if (TOHKU_PITCH_UP_index < 0 || TOHKU_PITCH_DOWN_index < 0) return 0.0; // 設定されていない場合
 
     if (TOHKU_PITCH_UP_index < axes_size)
@@ -215,9 +215,9 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   else if (joint_name == "TOHKU_ROLL")
   {
     const std::string TOHKU_ROLL_UP = "TOHKU_ROLL_UP";
-    const int TOHKU_ROLL_UP_index = getStringIndex(key_config_, TOHKU_ROLL_UP);
+    const int TOHKU_ROLL_UP_index = getIndexFromVector(key_config_, TOHKU_ROLL_UP);
     const std::string TOHKU_ROLL_DOWN = "TOHKU_ROLL_DOWN";
-    const int TOHKU_ROLL_DOWN_index = getStringIndex(key_config_, TOHKU_ROLL_DOWN);
+    const int TOHKU_ROLL_DOWN_index = getIndexFromVector(key_config_, TOHKU_ROLL_DOWN);
     if (TOHKU_ROLL_UP_index < 0 || TOHKU_ROLL_DOWN_index < 0) return 0.0; // 設定されていない場合
 
     if (TOHKU_ROLL_UP_index < axes_size)
@@ -228,9 +228,9 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   else if (joint_name == "MANIELBOW")
   {
     const std::string MANIELBOW_UP = "MANIELBOW_UP";
-    const int MANIELBOW_UP_index = getStringIndex(key_config_, MANIELBOW_UP);
+    const int MANIELBOW_UP_index = getIndexFromVector(key_config_, MANIELBOW_UP);
     const std::string MANIELBOW_DOWN = "MANIELBOW_DOWN";
-    const int MANIELBOW_DOWN_index = getStringIndex(key_config_, MANIELBOW_DOWN);
+    const int MANIELBOW_DOWN_index = getIndexFromVector(key_config_, MANIELBOW_DOWN);
     if (MANIELBOW_UP_index < 0 || MANIELBOW_DOWN_index < 0) return 0.0; // 設定されていない場合
 
     if (MANIELBOW_UP_index < axes_size)
@@ -241,9 +241,9 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   else if (joint_name == "YAWJOINT")
   {
     const std::string YAWJOINT_UP = "YAWJOINT_UP";
-    const int YAWJOINT_UP_index = getStringIndex(key_config_, YAWJOINT_UP);
+    const int YAWJOINT_UP_index = getIndexFromVector(key_config_, YAWJOINT_UP);
     const std::string YAWJOINT_DOWN = "YAWJOINT_DOWN";
-    const int YAWJOINT_DOWN_index = getStringIndex(key_config_, YAWJOINT_DOWN);
+    const int YAWJOINT_DOWN_index = getIndexFromVector(key_config_, YAWJOINT_DOWN);
     if (YAWJOINT_UP_index < 0 || YAWJOINT_DOWN_index < 0) return 0.0; // 設定されていない場合
 
     if (YAWJOINT_UP_index < axes_size)
@@ -254,7 +254,7 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   else if (joint_name == "TOHKU_TIP_01" || joint_name == "TOHKU_TIP_02")
   {
     const std::string TOHKU_TIP = "TOHKU_TIP";
-    const int TOHKU_TIP_index = getStringIndex(key_config_, TOHKU_TIP);
+    const int TOHKU_TIP_index = getIndexFromVector(key_config_, TOHKU_TIP);
     if (TOHKU_TIP_index < 0) return 0.0;
 
     if (TOHKU_TIP_index < axes_size)
@@ -265,7 +265,7 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   else if (joint_name == "PUSHROD")
   {
     const std::string PUSHROD = "PUSHROD";
-    const int PUSHROD_index = getStringIndex(key_config_, PUSHROD);
+    const int PUSHROD_index = getIndexFromVector(key_config_, PUSHROD);
     if (PUSHROD_index < 0) return 0.0;
 
     if (PUSHROD_index < axes_size)
@@ -275,7 +275,7 @@ float RTRJoycon::jogCommandSet(const std::string joint_name)
   }
   else
   {
-    const int index = getStringIndex(key_config_, joint_name);
+    const int index = getIndexFromVector(key_config_, joint_name);
     if (index < 0) return 0.0;
 
     if (index < axes_size)

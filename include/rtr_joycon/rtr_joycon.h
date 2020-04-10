@@ -46,7 +46,7 @@ private:
   float jogCommandSet(const std::string joint_name);
 
   template<typename T>
-  int getStringIndex(std::vector<T> vec, const T target)
+  int getIndexFromVector(std::vector<T> vec, const T target)
   {
     typename std::vector<T>::iterator itr;
     itr = std::find(vec.begin(), vec.end(), target);
