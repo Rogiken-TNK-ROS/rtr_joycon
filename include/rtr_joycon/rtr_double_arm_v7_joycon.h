@@ -1,5 +1,5 @@
-#ifndef RTR_JOYCON_H
-#define RTR_JOYCON_H
+#ifndef __RTR_DOUBLE_ARM_V7_JOYCON_H__
+#define __RTR_DOUBLE_ARM_V7_JOYCON_H__
 
 #include <ros/ros.h>
 #include <trajectory_msgs/JointTrajectory.h>
@@ -9,21 +9,25 @@
 #include <jog_msgs/JogJoint.h>
 #include <jog_msgs/JogFrame.h>
 
-class RTRJoycon
+namespace rtr {
+namespace joycon {
+
+class DoubleArmV7
 {
 public:
-  RTRJoycon(ros::NodeHandle& nh);
-  void publish(void); // 実行関数
+  DoubleArmV7(ros::NodeHandle& nh);
+  void publish(void);
   void updateCommand(void);
 
 private:
   ros::NodeHandle nh_;
-  ros::Subscriber joy_cmd_sub_;   // joy_node用subscriber
-  ros::Publisher cmd_vel_pub_;    // command_vel用publisher
-  ros::Publisher jog_joint_pub_;  // jog_joint用publisher
-  ros::Publisher jog_frame_pub_;  // jog_frame用publisher
-  ros::Publisher trajectory_pub_;    // JointTrajectory用publisher
-
+  ros::Subscriber joy_sub_;
+  ros::Publisher twist_pub_;
+  ros::Publisher jog_joint_pub_;
+  ros::Publisher jog_frame_pub_;
+  ros::Publisher gripper_traj_pub_;
+  ros::Publisher joycon_state_pub_;
+  
   ros::Publisher L1_enable_pub_;
   ros::Publisher R1_enable_pub_;
   ros::Publisher mani_arm_enable_pub_;
@@ -73,5 +77,8 @@ private:
   }
 
 };
+
+} // namespace joycon
+} // namespace rtr
 
 #endif  // RTR_JOYCON_
