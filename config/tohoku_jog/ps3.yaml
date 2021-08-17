@@ -17,8 +17,8 @@ TOHKU_ROLL:
   PLUS: "buttons/X_button"
   MINUS: "buttons/B_button"
 TOHKU_TIP_01:
-  PLUS: "buttons/R2_button"
-  MINUS: "buttons/R1_button"
+  PLUS: "buttons/L2_button"
+  MINUS: "buttons/L1_button"
 TOHKU_TIP_02:
-  PLUS: "buttons/R2_button"
-  MINUS: "buttons/R1_button"
+  PLUS: "buttons/L2_button"
+  MINUS: "buttons/L1_button"
