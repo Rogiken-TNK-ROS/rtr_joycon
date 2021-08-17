@@ -1,0 +1,24 @@
+MFRAME:
+  PLUS: "axes/L_stick_H"
+  MINUS: "axes/L_stick_H"
+BLOCK:
+  PLUS: "axes/R_stick_H"
+  MINUS: "axes/R_stick_H"
+BOOM:
+  PLUS: "axes/L_stick_V"
+  MINUS: "axes/L_stick_V"
+ARM:
+  PLUS: "axes/R_stick_V"
+  MINUS: "axes/R_stick_V"
+TOHKU_PITCH:
+  PLUS: "buttons/A_button"
+  MINUS: "buttons/Y_button"
+TOHKU_ROLL:
+  PLUS: "buttons/X_button"
+  MINUS: "buttons/B_button"
+TOHKU_TIP_01:
+  PLUS: "buttons/R2_button"
+  MINUS: "buttons/R1_button"
+TOHKU_TIP_02:
+  PLUS: "buttons/R2_button"
+  MINUS: "buttons/R1_button"

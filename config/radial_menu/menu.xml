@@ -1,6 +1,9 @@
 <item name="Teleop Mode" display="alttxt" alttxt="Teleop">
   <item name="Tohoku Jog">
-    <item name="Normal"/>
+    <item name="Activate">
+      <item name="Slow"/>
+      <item name="Fast"/>
+    </item>
     <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
       <item name="Grasp"/>
       <item name="Zero"/>
@@ -16,7 +19,10 @@
     <!-- <item name="Teaching"/> -->
   </item>
   <item name="Mani Jog">
-    <item name="Normal"/>
+    <item name="Activate">
+      <item name="Slow"/>
+      <item name="Fast"/>
+    </item>
     <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
       <item name="Grasp"/>
       <item name="Zero"/>
@@ -32,7 +38,10 @@
     <!-- <item name="Teaching"/> -->
   </item>
   <item name="Tohoku EEffector">
-    <item name="Normal"/>
+    <item name="Activate">
+      <item name="XYZ"/>
+      <item name="RPY"/>
+    </item>
     <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
       <item name="Grasp"/>
       <item name="Zero"/>
@@ -48,7 +57,10 @@
     <!-- <item name="Teaching"/> -->
   </item>
   <item name="Mani EEffector">
-    <item name="Normal"/>
+    <item name="Activate">
+      <item name="XYZ"/>
+      <item name="RPY"/>
+    </item>
     <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
       <item name="Grasp"/>
       <item name="Zero"/>

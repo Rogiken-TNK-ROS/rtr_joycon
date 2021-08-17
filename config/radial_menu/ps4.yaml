@@ -2,9 +2,9 @@ allow_multi_selection: false
 reset_on_enabling: false
 reset_on_disabling: false
 auto_select: false
-enable_button: 9    # PS4's option button
+enable_button: 11   # PS4's L3
 select_button: 5    # PS4's R1
 ascend_button: 4    # PS4's L1
-pointing_axis_v: 1  # PS4's LEFT Y
-pointing_axis_h: 0  # PS4's LEFT X
+pointing_axis_v: 4  # PS4's RIGHT Y
+pointing_axis_h: 3  # PS4's RIGHT X
 pointing_axis_threshold: 0.5
