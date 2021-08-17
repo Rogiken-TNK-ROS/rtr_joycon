@@ -6,6 +6,8 @@
   
   <node name="joy_node" pkg="joy" type="joy_node">
     <param name="dev" value="$(arg js_path)" />
+      <param name="deadzone" value="0.12" />
+    <param name="autorepeat_rate" value="25" />
   </node>
 
   <node name="teleop_menu_backend" pkg="nodelet" type="nodelet"
@@ -14,9 +16,4 @@
     <remap from="menu_state" to="teleop_menu_state" />
     <rosparam command="load" file="$(find rtr_joycon)/config/radial_menu/$(arg controller_name).yaml"/>
   </node>
-
-  <node name="rviz" pkg="rviz" type="rviz"
-        args="--display-config $(find rtr_joycon)/launch/rviz/teleop.rviz" />
-  <!-- <node name="teleop_node" pkg="radial_menu_example" type="example_teleop_node" output="screen" /> -->
-
 </launch>

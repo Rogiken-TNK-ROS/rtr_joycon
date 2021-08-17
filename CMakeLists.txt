@@ -1,22 +1,47 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(rtr_joycon)
 
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
-find_package(catkin REQUIRED COMPONENTS
+set(ROS_DEPENDS
   roscpp
   std_msgs
-  geometry_msgs
-  jog_msgs
+  sensor_msgs
+  radial_menu_msgs
+  trajectory_msgs
+  radial_menu_model
+  )
+
+find_package(catkin REQUIRED COMPONENTS
+  ${ROS_DEPENDS}
 )
 
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS 
-    std_msgs
-    geometry_msgs
-    jog_msgs
+  CATKIN_DEPENDS ${ROS_DEPENDS}
 )
+
+
+###########
+# Library #
+###########
+set(ORIGINAL_LIBS
+  tohoku_control
+  )
+foreach(lib ${ORIGINAL_LIBS})
+  add_library(${lib} SHARED
+    include/rtr_joycon/${lib}.h
+    src/${lib}.cpp
+    )
+  add_dependencies(${lib} ${catkin_EXPORTED_TARGETS})
+  target_link_libraries(${lib} ${catkin_LIBRARIES})
+  
+  install(TARGETS ${lib}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+    )  
+endforeach()
 
 ###########
 ## Build ##
@@ -28,10 +53,13 @@ include_directories(
 )
 
 add_executable(rtr_joycon
-src/rtr_joycon.cpp
-src/rtr_joycon_node.cpp)
+  include/rtr_joycon/rtr_joycon.h
+  src/rtr_joycon.cpp
+  src/rtr_joycon_node.cpp
+  )
 target_link_libraries(rtr_joycon
-${catkin_LIBRARIES})
+  ${ORIGINAL_LIBS}
+  ${catkin_LIBRARIES})
 
 #############
 ## Install ##
