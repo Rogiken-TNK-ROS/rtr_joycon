@@ -1,4 +1,4 @@
-#ifndef RTR_JOYCON_KnEYMAP_CONFIG_H_
+#ifndef RTR_JOYCON_KEYMAP_CONFIG_H_
 #define RTR_JOYCON_KEYMAP_CONFIG_H_
 
 #include <ros/ros.h>
