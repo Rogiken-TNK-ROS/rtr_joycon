@@ -1,0 +1,66 @@
+<item name="Teleop Mode" display="alttxt" alttxt="Teleop">
+  <item name="Tohoku Jog">
+    <item name="Normal"/>
+    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/>         -->
+    </item>
+    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/> -->
+    </item>
+    <!-- <item name="Camera"/> -->
+    <!-- <item name="Follow the other"/> -->
+    <!-- <item name="Teaching"/> -->
+  </item>
+  <item name="Mani Jog">
+    <item name="Normal"/>
+    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/>         -->
+    </item>
+    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/> -->
+    </item>
+    <!-- <item name="Camera"/> -->
+    <!-- <item name="Follow the other"/> -->
+    <!-- <item name="Teaching"/> -->
+  </item>
+  <item name="Tohoku EEffector">
+    <item name="Normal"/>
+    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/>         -->
+    </item>
+    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/> -->
+    </item>
+    <!-- <item name="Camera"/> -->
+    <!-- <item name="Follow the other"/> -->
+    <!-- <item name="Teaching"/> -->
+  </item>
+  <item name="Mani EEffector">
+    <item name="Normal"/>
+    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/>         -->
+    </item>
+    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
+      <item name="Grasp"/>
+      <item name="Zero"/>
+      <!-- <item name="Pose0"/> -->
+    </item>
+    <!-- <item name="Camera"/> -->
+    <!-- <item name="Follow the other"/> -->
+    <!-- <item name="Teaching"/> -->
+  </item>
+</item>

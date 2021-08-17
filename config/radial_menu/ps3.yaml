@@ -1,0 +1,10 @@
+allow_multi_selection: false
+reset_on_enabling: false
+reset_on_disabling: false
+auto_select: false
+enable_button: 9    # PS3's start button
+select_button: 5    # PS3's R1
+ascend_button: 4    # PS3's L1
+pointing_axis_v: 1  # PS3's LEFT Y
+pointing_axis_h: 0  # PS3's LEFT X
+pointing_axis_threshold: 0.5
