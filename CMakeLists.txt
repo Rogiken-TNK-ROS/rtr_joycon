@@ -25,8 +25,21 @@ catkin_package(
 ###########
 # Library #
 ###########
+add_library(keymap_config SHARED
+  include/rtr_joycon/keymap_config.h
+  src/keymap_config.cpp
+  )
+add_dependencies(keymap_config ${catkin_EXPORTED_TARGETS})
+target_link_libraries(keymap_config ${catkin_LIBRARIES})
+
+install(TARGETS keymap_config
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+  )  
+
 set(ORIGINAL_LIBS
-  tohoku_control
+  tohoku_jog_control
   )
 foreach(lib ${ORIGINAL_LIBS})
   add_library(${lib} SHARED
@@ -34,7 +47,7 @@ foreach(lib ${ORIGINAL_LIBS})
     src/${lib}.cpp
     )
   add_dependencies(${lib} ${catkin_EXPORTED_TARGETS})
-  target_link_libraries(${lib} ${catkin_LIBRARIES})
+  target_link_libraries(${lib} keymap_config ${catkin_LIBRARIES})
   
   install(TARGETS ${lib}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

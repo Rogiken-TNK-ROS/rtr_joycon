@@ -1,10 +1,12 @@
-#ifndef RTR_JOYCON_TOHOKU_CONTROL_H_
-#define RTR_JOYCON_TOHOKU_CONTROL_H_
+#ifndef RTR_JOYCON_TOHOKU_JOG_CONTROL_H_
+#define RTR_JOYCON_TOHOKU_JOG_CONTROL_H_
 
 #include <ros/ros.h>
 #include <sensor_msgs/Joy.h>
 #include <sensor_msgs/JointState.h>
 #include <trajectory_msgs/JointTrajectory.h>
+
+#include <rtr_joycon/keymap_config.h>
 
 namespace rtr
 {
@@ -17,8 +19,8 @@ class TohokuJogControl
 
  private:
   void control(const sensor_msgs::Joy& joy, const double& step_rad=0.6);
-  
-  std::map<std::string, int> keymap_;
+
+  rtr::KeymapConfig kc_;
   std::map<std::string, std::string> joint_map_;
   std::map<std::string, double> arm_joint_values_;
   std::map<std::string, double> gripper_joint_values_;
@@ -36,4 +38,4 @@ class TohokuJogControl
 
 } // namespace rtr
 
-#endif // RTR_JOYCON_TOHOKU_CONTROL_H_
+#endif // RTR_JOYCON_TOHOKU_JOG_CONTROL_H_

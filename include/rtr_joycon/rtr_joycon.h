@@ -5,7 +5,7 @@
 #include <radial_menu_model/model.hpp>
 #include <sensor_msgs/JointState.h>
 
-#include <rtr_joycon/tohoku_control.h>
+#include <rtr_joycon/tohoku_jog_control.h>
 
 class RTRJoycon
 {

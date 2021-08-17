@@ -1,64 +1,11 @@
-#include <rtr_joycon/tohoku_control.h>
+#include <rtr_joycon/tohoku_jog_control.h>
 
 namespace rtr
 {
 TohokuJogControl::TohokuJogControl(ros::NodeHandle& n)
 {
   ros::NodeHandle nh("~");
-  // axes
-  int idx;
-  nh.getParam("axes/L_stick_H", idx);
-  keymap_["axes/L_stick_H"] = idx;
-  nh.getParam("axes/L_stick_V", idx);
-  keymap_["axes/L_stick_V"] = idx;
-  nh.getParam("axes/R_stick_H", idx);
-  keymap_["axes/R_stick_H"] = idx;
-  nh.getParam("axes/R_stick_V", idx);
-  keymap_["axes/R_stick_V"] = idx;
-  nh.getParam("axes/L2_trigger", idx);
-  keymap_["axes/L2_trigger"] = idx;
-  nh.getParam("axes/R2_trigger", idx);
-  keymap_["axes/R2_trigger"] = idx;
-  nh.getParam("axes/cross_key_H", idx);
-  keymap_["axes/cross_key_H"] = idx;
-  nh.getParam("axes/cross_key_V", idx);
-  keymap_["axes/cross_key_V"] = idx;
-  // buttons
-  nh.getParam("buttons/A_button", idx);
-  keymap_["buttons/A_button"] = idx;
-  nh.getParam("buttons/B_button", idx);
-  keymap_["buttons/B_button"] = idx;
-  nh.getParam("buttons/X_button", idx);
-  keymap_["buttons/X_button"] = idx;
-  nh.getParam("buttons/Y_button", idx);
-  keymap_["buttons/Y_button"] = idx;
-  nh.getParam("buttons/L1_button", idx);
-  keymap_["buttons/L1_button"] = idx;
-  nh.getParam("buttons/R1_button", idx);
-  keymap_["buttons/R1_button"] = idx;
-  nh.getParam("buttons/L2_button", idx);
-  keymap_["buttons/L2_button"] = idx;
-  nh.getParam("buttons/R2_button", idx);
-  keymap_["buttons/R2_button"] = idx;
-  nh.getParam("buttons/L3_button", idx);
-  keymap_["buttons/L3_button"] = idx;
-  nh.getParam("buttons/R3_button", idx);
-  keymap_["buttons/R3_button"] = idx;
-  nh.getParam("buttons/option_button", idx);
-  keymap_["buttons/option_button"] = idx;
-  nh.getParam("buttons/start_button", idx);
-  keymap_["buttons/start_button"] = idx;
-  nh.getParam("buttons/home_button", idx);
-  keymap_["buttons/home_button"] = idx;
-  nh.getParam("buttons/cross_U", idx);
-  keymap_["buttons/cross_U"] = idx;
-  nh.getParam("buttons/cross_D", idx);
-  keymap_["buttons/cross_D"] = idx;
-  nh.getParam("buttons/cross_L", idx);
-  keymap_["buttons/cross_L"] = idx;
-  nh.getParam("buttons/cross_R", idx);
-  keymap_["buttons/cross_R"] = idx;
-
+  kc_.init(nh);
   // joint map
   std::string str;
   nh.getParam("MFRAME/PLUS", str);
@@ -163,13 +110,13 @@ void TohokuJogControl::control(const sensor_msgs::Joy& joy, const double& step_r
     double minus_value = 0;
     if(plus_key.substr(0,4) == "axes")
     {
-      plus_value = step_rad * (joy.axes[keymap_[plus_key]] >= axis_threshold_);
-      minus_value = -step_rad * (joy.axes[keymap_[minus_key]] < -axis_threshold_);
+      plus_value = step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
+      minus_value = -step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
     }
     else if(plus_key.substr(0,7) == "buttons")
     {
-      plus_value = step_rad * joy.buttons[keymap_[plus_key]];
-      minus_value = -step_rad * joy.buttons[keymap_[minus_key]];
+      plus_value = step_rad * joy.buttons[kc_.map(plus_key)];
+      minus_value = -step_rad * joy.buttons[kc_.map(minus_key)];
     }
     else
     {
@@ -192,13 +139,13 @@ void TohokuJogControl::control(const sensor_msgs::Joy& joy, const double& step_r
     double minus_value = 0;
     if(plus_key.substr(0,4) == "axes")
     {
-      plus_value = step_rad * (joy.axes[keymap_[plus_key]] >= axis_threshold_);
-      minus_value = -step_rad * (joy.axes[keymap_[minus_key]] < -axis_threshold_);
+      plus_value = step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
+      minus_value = -step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
     }
     else if(plus_key.substr(0,7) == "buttons")
     {
-      plus_value = step_rad * joy.buttons[keymap_[plus_key]];
-      minus_value = -step_rad * joy.buttons[keymap_[minus_key]];
+      plus_value = step_rad * joy.buttons[kc_.map(plus_key)];
+      minus_value = -step_rad * joy.buttons[kc_.map(minus_key)];
     }
     else
     {
