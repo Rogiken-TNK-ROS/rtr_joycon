@@ -110,8 +110,13 @@ void TohokuJogControl::control(const sensor_msgs::Joy& joy, const double& step_r
     double minus_value = 0;
     if(plus_key.substr(0,4) == "axes")
     {
-      plus_value = step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
-      minus_value = -step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
+      if(i->first == "ARM") {
+        plus_value = -step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
+        minus_value = step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
+      } else {
+        plus_value = step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
+        minus_value = -step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
+      }
     }
     else if(plus_key.substr(0,7) == "buttons")
     {
