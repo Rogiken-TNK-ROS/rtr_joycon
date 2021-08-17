@@ -40,6 +40,7 @@ install(TARGETS keymap_config
 
 set(ORIGINAL_LIBS
   tohoku_jog_control
+  mani_jog_control
   )
 foreach(lib ${ORIGINAL_LIBS})
   add_library(${lib} SHARED

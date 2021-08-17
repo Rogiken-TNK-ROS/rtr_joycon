@@ -6,12 +6,15 @@
 void RTRJoycon::joyCb(const sensor_msgs::JoyConstPtr joy)
 {
   if (!model_.isEnabled()) {
-    if (model_.isSelected("Teleop Mode.Tohoku Jog.Activate.Slow")) {
+    if(model_.isSelected("Teleop Mode.Tohoku Jog.Activate.Slow"))
       tjc_.slowControl(*joy, js_);
-    }
-    if (model_.isSelected("Teleop Mode.Tohoku Jog.Activate.Slow")) {
+    if(model_.isSelected("Teleop Mode.Tohoku Jog.Activate.Fast"))
       tjc_.fastControl(*joy, js_);
-    }
+    if(model_.isSelected("Teleop Mode.Mani Jog.Activate.Slow"))
+      mjc_.slowControl(*joy, js_);
+    if(model_.isSelected("Teleop Mode.Mani Jog.Activate.Fast"))
+      mjc_.fastControl(*joy, js_);
+
   }
 }
 
@@ -28,7 +31,7 @@ void RTRJoycon::jsCb(const sensor_msgs::JointStateConstPtr js)
   js_ = *js;
 }
 
-RTRJoycon::RTRJoycon(ros::NodeHandle& nh) : tjc_(nh)
+RTRJoycon::RTRJoycon(ros::NodeHandle& nh) : tjc_(nh), mjc_(nh)
 {
   // setup subscriber //
   joy_sub_ = nh.subscribe("joy", 1, &RTRJoycon::joyCb, this);

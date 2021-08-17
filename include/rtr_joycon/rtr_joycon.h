@@ -6,6 +6,7 @@
 #include <sensor_msgs/JointState.h>
 
 #include <rtr_joycon/tohoku_jog_control.h>
+#include <rtr_joycon/mani_jog_control.h>
 
 class RTRJoycon
 {
@@ -25,6 +26,7 @@ private:
   sensor_msgs::JointState js_;
 
   rtr::TohokuJogControl tjc_;
+  rtr::ManiJogControl mjc_;
   
 };
 

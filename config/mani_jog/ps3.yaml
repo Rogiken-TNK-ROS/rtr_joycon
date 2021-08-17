@@ -1,0 +1,24 @@
+UFRAME:
+  PLUS: "axes/L_stick_H"
+  MINUS: "axes/L_stick_H"
+MNP_SWING:
+  PLUS: "axes/R_stick_H"
+  MINUS: "axes/R_stick_H"
+MANIBOOM:
+  PLUS: "axes/L_stick_V"
+  MINUS: "axes/L_stick_V"
+MANIARM:
+  PLUS: "axes/R_stick_V"
+  MINUS: "axes/R_stick_V"
+MANIELBOW:
+  PLUS: "buttons/A_button"
+  MINUS: "buttons/Y_button"
+YAWJOINT:
+  PLUS: "buttons/X_button"
+  MINUS: "buttons/B_button"
+HANDBASE:
+  PLUS: "buttons/R1_button"
+  MINUS: "buttons/R2_button"
+PUSHROD:
+  PLUS: "buttons/L2_button"
+  MINUS: "buttons/L1_button"
