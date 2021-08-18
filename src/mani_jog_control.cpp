@@ -113,10 +113,10 @@ void ManiJogControl::control(const sensor_msgs::Joy& joy, const double& step_rad
     {
       if(i->first == "MANIARM") {
         plus_value = -step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
-        minus_value = step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
+        minus_value = step_rad * (joy.axes[kc_.map(minus_key)] <= -axis_threshold_);
       } else {
         plus_value = step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
-        minus_value = -step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
+        minus_value = -step_rad * (joy.axes[kc_.map(minus_key)] <= -axis_threshold_);
       }
     }
     else if(plus_key.substr(0,7) == "buttons")
@@ -146,7 +146,7 @@ void ManiJogControl::control(const sensor_msgs::Joy& joy, const double& step_rad
     if(plus_key.substr(0,4) == "axes")
     {
       plus_value = 0.1*step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
-      minus_value = -0.1*step_rad * (joy.axes[kc_.map(minus_key)] < -axis_threshold_);
+      minus_value = -0.1*step_rad * (joy.axes[kc_.map(minus_key)] <= -axis_threshold_);
     }
     else if(plus_key.substr(0,7) == "buttons")
     {
