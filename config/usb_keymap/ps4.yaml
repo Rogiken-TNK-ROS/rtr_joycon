@@ -6,8 +6,8 @@ axes:
   R_stick_H:      3
   R_stick_V:      4
   r2_triger:      5
-  cross_key_H:    6
-  cross_key_V:    7
+  cross_H:        6
+  cross_V:        7
 buttons:
   A_button:       0
   B_button:       1
