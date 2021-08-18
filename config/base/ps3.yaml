@@ -1,0 +1,6 @@
+Linear:
+  PLUS: "buttons/cross_U"
+  MINUS: "buttons/cross_D"
+Angular:
+  PLUS: "buttons/cross_L"
+  MINUS: "buttons/cross_R"

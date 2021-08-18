@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="controller_name" default="ps3"/>
-    <node pkg="rtr_joycon" type="rtr_joycon" name="rtr_joycon" output="screen">
-      <rosparam command="load" file="$(find rtr_joycon)/config/usb_keymap/$(arg controller_name).yaml"/>
-      <rosparam command="load" file="$(find rtr_joycon)/config/tohoku_jog/$(arg controller_name).yaml"/>
-      <rosparam command="load" file="$(find rtr_joycon)/config/tohoku_jog/setting.yaml"/>
-      <rosparam command="load" file="$(find rtr_joycon)/config/mani_jog/$(arg controller_name).yaml"/>
-      <rosparam command="load" file="$(find rtr_joycon)/config/mani_jog/setting.yaml"/>
-    </node>
+  <node pkg="rtr_joycon" type="rtr_joycon" name="rtr_joycon" output="screen">
+    <rosparam command="load" file="$(find rtr_joycon)/config/usb_keymap/$(arg controller_name).yaml"/>
+    <rosparam command="load" file="$(find rtr_joycon)/config/base/$(arg controller_name).yaml"/>
+    <rosparam command="load" file="$(find rtr_joycon)/config/base/setting.yaml"/>
+    <rosparam command="load" file="$(find rtr_joycon)/config/tohoku_jog/$(arg controller_name).yaml"/>
+    <rosparam command="load" file="$(find rtr_joycon)/config/tohoku_jog/setting.yaml"/>
+    <rosparam command="load" file="$(find rtr_joycon)/config/mani_jog/$(arg controller_name).yaml"/>
+    <rosparam command="load" file="$(find rtr_joycon)/config/mani_jog/setting.yaml"/>
+  </node>
 </launch>

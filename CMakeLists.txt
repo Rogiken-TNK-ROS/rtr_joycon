@@ -39,6 +39,7 @@ install(TARGETS keymap_config
   )  
 
 set(ORIGINAL_LIBS
+  base_control
   tohoku_jog_control
   mani_jog_control
   )

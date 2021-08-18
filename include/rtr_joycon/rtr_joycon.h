@@ -5,6 +5,7 @@
 #include <radial_menu_model/model.hpp>
 #include <sensor_msgs/JointState.h>
 
+#include <rtr_joycon/base_control.h>
 #include <rtr_joycon/tohoku_jog_control.h>
 #include <rtr_joycon/mani_jog_control.h>
 
@@ -25,6 +26,7 @@ private:
   radial_menu_model::Model model_;
   sensor_msgs::JointState js_;
 
+  rtr::BaseControl bc_;
   rtr::TohokuJogControl tjc_;
   rtr::ManiJogControl mjc_;
   
