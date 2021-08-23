@@ -7,9 +7,14 @@ set(ROS_DEPENDS
   roscpp
   std_msgs
   sensor_msgs
+  geometry_msgs
   radial_menu_msgs
   trajectory_msgs
   radial_menu_model
+  moveit_core
+  moveit_msgs
+  moveit_visual_tools
+  tf2
   )
 
 find_package(catkin REQUIRED COMPONENTS
@@ -42,6 +47,7 @@ set(ORIGINAL_LIBS
   base_control
   tohoku_jog_control
   mani_jog_control
+  tohoku_ik_control
   )
 foreach(lib ${ORIGINAL_LIBS})
   add_library(${lib} SHARED
