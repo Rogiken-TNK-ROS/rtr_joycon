@@ -39,8 +39,8 @@
   </item>
   <item name="Tohoku EEffector">
     <item name="Activate">
-      <item name="XYZ"/>
-      <item name="RPY"/>
+      <item name="Slow"/>
+      <item name="Fast"/>
     </item>
     <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
       <item name="Grasp"/>

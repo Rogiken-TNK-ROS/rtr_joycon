@@ -7,7 +7,7 @@
 
 namespace rtr
 {
-TohokuIKControl::TohokuIKControl()
+TohokuIKControl::TohokuIKControl(ros::NodeHandle& n) : group_("tohoku_arm")
 {
   using namespace std;
   using namespace moveit::planning_interface;

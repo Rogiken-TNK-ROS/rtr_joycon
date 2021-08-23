@@ -14,7 +14,7 @@ namespace rtr
 class TohokuIKControl
 {
  public:
-  TohokuIKControl();
+  TohokuIKControl(ros::NodeHandle& n);
 
   void slowControl(const sensor_msgs::Joy& joy);
   void fastControl(const sensor_msgs::Joy& joy);

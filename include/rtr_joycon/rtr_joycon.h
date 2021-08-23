@@ -8,6 +8,7 @@
 #include <rtr_joycon/base_control.h>
 #include <rtr_joycon/tohoku_jog_control.h>
 #include <rtr_joycon/mani_jog_control.h>
+#include <rtr_joycon/tohoku_ik_control.h>
 
 class RTRJoycon
 {
@@ -29,7 +30,7 @@ private:
   rtr::BaseControl bc_;
   rtr::TohokuJogControl tjc_;
   rtr::ManiJogControl mjc_;
-  
+  rtr::TohokuIKControl tic_;
 };
 
 #endif  // RTR_JOYCON_H_
