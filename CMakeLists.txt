@@ -12,6 +12,8 @@ set(ROS_DEPENDS
   trajectory_msgs
   radial_menu_model
   moveit_core
+  moveit_ros_planning
+  moveit_ros_planning_interface
   moveit_msgs
   moveit_visual_tools
   tf2
