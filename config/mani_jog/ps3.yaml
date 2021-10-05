@@ -14,11 +14,11 @@ MANIELBOW:
   PLUS: "buttons/A_button"
   MINUS: "buttons/Y_button"
 YAWJOINT:
-  PLUS: "buttons/X_button"
-  MINUS: "buttons/B_button"
-HANDBASE:
-  PLUS: "buttons/R1_button"
-  MINUS: "buttons/R2_button"
-PUSHROD:
   PLUS: "buttons/L2_button"
+  MINUS: "buttons/R2_button"
+HANDBASE:
+  PLUS: "buttons/B_button"
+  MINUS: "buttons/X_button"
+PUSHROD:
+  PLUS: "buttons/R1_button"
   MINUS: "buttons/L1_button"
