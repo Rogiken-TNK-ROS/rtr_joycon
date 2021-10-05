@@ -1,78 +1,18 @@
 <item name="Teleop Mode" display="alttxt" alttxt="Teleop">
   <item name="Tohoku Jog">
-    <item name="Activate">
-      <item name="Slow"/>
-      <item name="Fast"/>
-    </item>
-    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/>         -->
-    </item>
-    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/> -->
-    </item>
-    <!-- <item name="Camera"/> -->
-    <!-- <item name="Follow the other"/> -->
-    <!-- <item name="Teaching"/> -->
+    <item name="Slow"/>
+    <item name="Fast"/>
   </item>
   <item name="Mani Jog">
-    <item name="Activate">
-      <item name="Slow"/>
-      <item name="Fast"/>
-    </item>
-    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/>         -->
-    </item>
-    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/> -->
-    </item>
-    <!-- <item name="Camera"/> -->
-    <!-- <item name="Follow the other"/> -->
-    <!-- <item name="Teaching"/> -->
+    <item name="Slow"/>
+    <item name="Fast"/>
   </item>
-  <item name="Tohoku EEffector">
-    <item name="Activate">
-      <item name="Slow"/>
-      <item name="Fast"/>
-    </item>
-    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/>         -->
-    </item>
-    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/> -->
-    </item>
-    <!-- <item name="Camera"/> -->
-    <!-- <item name="Follow the other"/> -->
-    <!-- <item name="Teaching"/> -->
-  </item>
-  <item name="Mani EEffector">
-    <item name="Activate">
-      <item name="XYZ"/>
-      <item name="RPY"/>
-    </item>
-    <item name="Saved Single Pose" display="alttxt" alttxt="Single Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/>         -->
-    </item>
-    <item name="Saved Both Pose" display="alttxt" alttxt="Both Saved">
-      <item name="Grasp"/>
-      <item name="Zero"/>
-      <!-- <item name="Pose0"/> -->
-    </item>
-    <!-- <item name="Camera"/> -->
-    <!-- <item name="Follow the other"/> -->
-    <!-- <item name="Teaching"/> -->
-  </item>
+  <!-- <item name="Tohoku EEffector"> -->
+  <!--     <item name="Slow"/> -->
+  <!--     <item name="Fast"/> -->
+  <!-- </item> -->
+  <!-- <item name="Mani EEffector"> -->
+  <!--     <item name="XYZ"/> -->
+  <!--     <item name="RPY"/> -->
+  <!-- </item> -->
 </item>
