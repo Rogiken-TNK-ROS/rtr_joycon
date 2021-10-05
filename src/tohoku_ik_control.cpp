@@ -55,74 +55,79 @@ TohokuIKControl::TohokuIKControl(ros::NodeHandle& n) : group_("tohoku_arm")
 
 void TohokuIKControl::control(const sensor_msgs::Joy& joy, const double& xyz_step, const double& rpy_step)
 {
-  geometry_msgs::PoseStamped current_pose = mi_->getCurrentPose("TOHKU_PITCH");
+  geometry_msgs::PoseStamped current_pose = mi_->getCurrentPose("TOHKU_ROLL");
   geometry_msgs::Pose goal_pose = current_pose.pose;
 
-  for(auto i=keymap_.begin(); i!=keymap_.end(); i++) {
-    double plus_value = 0;
-    double minus_value = 0;
-    if(!joy.buttons[rpy_mode_button_]) {
-      if(i->second.substr(0,4) == "axis") {
-        plus_value = xyz_step * (joy.axes[kc_.map(i->second)] >= axis_threshold_);
-        minus_value = -xyz_step * (joy.axes[kc_.map(i->second)] <= -axis_threshold_);
-      } else if(i->second.substr(0,5) == "buttons") {
-        plus_value = xyz_step * joy.buttons[kc_.map(i->second)];
-        minus_value = -xyz_step * joy.buttons[kc_.map(i->second)];
-      } else {
-        plus_value = 0;
-        minus_value = 0;
-      }
-      if(i->first.substr(0,1) == "X")
-        goal_pose.position.x += plus_value + minus_value;
-      else if(i->first.substr(0,1) == "Y")
-        goal_pose.position.y += plus_value + minus_value;
-      else if(i->first.substr(0,1) == "Z") 
-        goal_pose.position.z += plus_value + minus_value;
-      else
-        goal_pose.position = current_pose.pose.position;
-    } else {
-      if(i->second.substr(0,4) == "axis") {
-        plus_value = rpy_step * (joy.axes[kc_.map(i->second)] >= axis_threshold_);
-        minus_value = -rpy_step * (joy.axes[kc_.map(i->second)] <= -axis_threshold_);
-      } else if(i->second.substr(0,5) == "buttons") {
-        plus_value = rpy_step * joy.buttons[kc_.map(i->second)];
-        minus_value = -rpy_step * joy.buttons[kc_.map(i->second)];
-      } else {
-        plus_value = 0;
-        minus_value = 0;
-      }
-      tf2::Quaternion rotation;
-      rotation.setValue(current_pose.pose.orientation.x,
-        current_pose.pose.orientation.y,
-        current_pose.pose.orientation.z,
-        current_pose.pose.orientation.w);
-      tf2::Matrix3x3 m(rotation);
-      double roll, pitch, yaw;
-      m.getRPY(roll, pitch, yaw);
-      if(i->first.substr(0,4) == "ROLL")
-        roll += plus_value + minus_value;
-      else if(i->first.substr(0,5) == "PITCH")
-        pitch += plus_value + minus_value;
-      else if(i->first.substr(0,3) == "YAW")
-        yaw += plus_value + minus_value;
-      else ;
-      rotation.setRPY(roll,pitch,yaw);
-      rotation.normalize();
-      goal_pose.orientation.x = rotation.x();
-      goal_pose.orientation.y = rotation.y();
-      goal_pose.orientation.z = rotation.z();
-      goal_pose.orientation.w = rotation.w();
-    }
-  }
+  using namespace std;
+  cout << goal_pose.position.x << endl;
+  cout << goal_pose.position.y << endl;
+  cout << goal_pose.position.z << endl;
+  
+  // for(auto i=keymap_.begin(); i!=keymap_.end(); i++) {
+  //   double plus_value = 0;
+  //   double minus_value = 0;
+  //   if(!joy.buttons[rpy_mode_button_]) {
+  //     if(i->second.substr(0,4) == "axis") {
+  //       plus_value = xyz_step * (joy.axes[kc_.map(i->second)] >= axis_threshold_);
+  //       minus_value = -xyz_step * (joy.axes[kc_.map(i->second)] <= -axis_threshold_);
+  //     } else if(i->second.substr(0,5) == "buttons") {
+  //       plus_value = xyz_step * joy.buttons[kc_.map(i->second)];
+  //       minus_value = -xyz_step * joy.buttons[kc_.map(i->second)];
+  //     } else {
+  //       plus_value = 0;
+  //       minus_value = 0;
+  //     }
+  //     if(i->first.substr(0,1) == "X")
+  //       goal_pose.position.x += plus_value + minus_value;
+  //     else if(i->first.substr(0,1) == "Y")
+  //       goal_pose.position.y += plus_value + minus_value;
+  //     else if(i->first.substr(0,1) == "Z") 
+  //       goal_pose.position.z += plus_value + minus_value;
+  //     else
+  //       goal_pose.position = current_pose.pose.position;
+  //   } else {
+  //     if(i->second.substr(0,4) == "axis") {
+  //       plus_value = rpy_step * (joy.axes[kc_.map(i->second)] >= axis_threshold_);
+  //       minus_value = -rpy_step * (joy.axes[kc_.map(i->second)] <= -axis_threshold_);
+  //     } else if(i->second.substr(0,5) == "buttons") {
+  //       plus_value = rpy_step * joy.buttons[kc_.map(i->second)];
+  //       minus_value = -rpy_step * joy.buttons[kc_.map(i->second)];
+  //     } else {
+  //       plus_value = 0;
+  //       minus_value = 0;
+  //     }
+  //     tf2::Quaternion rotation;
+  //     rotation.setValue(current_pose.pose.orientation.x,
+  //       current_pose.pose.orientation.y,
+  //       current_pose.pose.orientation.z,
+  //       current_pose.pose.orientation.w);
+  //     tf2::Matrix3x3 m(rotation);
+  //     double roll, pitch, yaw;
+  //     m.getRPY(roll, pitch, yaw);
+  //     if(i->first.substr(0,4) == "ROLL")
+  //       roll += plus_value + minus_value;
+  //     else if(i->first.substr(0,5) == "PITCH")
+  //       pitch += plus_value + minus_value;
+  //     else if(i->first.substr(0,3) == "YAW")
+  //       yaw += plus_value + minus_value;
+  //     else ;
+  //     rotation.setRPY(roll,pitch,yaw);
+  //     rotation.normalize();
+  //     goal_pose.orientation.x = rotation.x();
+  //     goal_pose.orientation.y = rotation.y();
+  //     goal_pose.orientation.z = rotation.z();
+  //     goal_pose.orientation.w = rotation.w();
+  //   }
+  // }
 
-  moveit_msgs::RobotTrajectory trajectory;
-  std::vector<geometry_msgs::Pose> waypoints;
-  waypoints.emplace_back(current_pose.pose);
-  waypoints.emplace_back(goal_pose);
-  const double jump_threshold = 0.0;
-  const double eef_step = 0.001;
-  double fraction = mi_->computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
-  mi_->execute(trajectory);
+  // moveit_msgs::RobotTrajectory trajectory;
+  // std::vector<geometry_msgs::Pose> waypoints;
+  // waypoints.emplace_back(current_pose.pose);
+  // waypoints.emplace_back(goal_pose);
+  // const double jump_threshold = 0.0;
+  // const double eef_step = 0.001;
+  // double fraction = mi_->computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
+  // mi_->execute(trajectory);
 }
 
 void TohokuIKControl::slowControl(const sensor_msgs::Joy& joy)

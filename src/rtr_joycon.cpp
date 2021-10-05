@@ -6,17 +6,17 @@
 void RTRJoycon::joyCb(const sensor_msgs::JoyConstPtr joy)
 {
   if (!model_.isEnabled()) {
-    if(model_.isSelected("Teleop Mode.Tohoku Jog.Activate.Slow"))
+    if(model_.isSelected("Teleop Mode.Tohoku Jog.Slow"))
       tjc_.slowControl(*joy, js_);
-    if(model_.isSelected("Teleop Mode.Tohoku Jog.Activate.Fast"))
+    if(model_.isSelected("Teleop Mode.Tohoku Jog.Fast"))
       tjc_.fastControl(*joy, js_);
-    if(model_.isSelected("Teleop Mode.Mani Jog.Activate.Slow"))
+    if(model_.isSelected("Teleop Mode.Mani Jog.Slow"))
       mjc_.slowControl(*joy, js_);
-    if(model_.isSelected("Teleop Mode.Mani Jog.Activate.Fast"))
+    if(model_.isSelected("Teleop Mode.Mani Jog.Fast"))
       mjc_.fastControl(*joy, js_);
-    // if(model_.isSelected("Teleop Mode.Tohoku EEffector.Activate.Slow"))
+    // if(model_.isSelected("Teleop Mode.Tohoku EEffector.Slow"))
     //   tic_.slowControl(*joy);
-    // if(model_.isSelected("Teleop Mode.Tohoku EEffector.Activate.Fast"))
+    // if(model_.isSelected("Teleop Mode.Tohoku EEffector.Fast"))
     //   tic_.fastControl(*joy);
   }
   bc_.control(*joy);

@@ -5,6 +5,9 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "rtr_joycon_node");
   ros::NodeHandle nh;
+
+  ros::spinOnce();
+  
   RTRJoycon rjc(nh);
 
   ros::spin();
