@@ -145,20 +145,21 @@ void ManiJogControl::control(const sensor_msgs::Joy& joy, const double& step_rad
     double minus_value = 0;
     if(plus_key.substr(0,4) == "axes")
     {
-      plus_value = 0.1*step_rad * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
-      minus_value = -0.1*step_rad * (joy.axes[kc_.map(minus_key)] <= -axis_threshold_);
+      plus_value = 0.1 * (joy.axes[kc_.map(plus_key)] >= axis_threshold_);
+      minus_value = -0.1 * (joy.axes[kc_.map(minus_key)] <= -axis_threshold_);
     }
     else if(plus_key.substr(0,7) == "buttons")
     {
-      plus_value = 0.1*step_rad * joy.buttons[kc_.map(plus_key)];
-      minus_value = -0.1*step_rad * joy.buttons[kc_.map(minus_key)];
+      plus_value = 0.1 * joy.buttons[kc_.map(plus_key)];
+      minus_value = -0.1 * joy.buttons[kc_.map(minus_key)];
     }
     else
     {
       plus_value = 0;
       minus_value = 0;
     }
-    gripper_msg_.points[0].positions[std::distance(gripper_joint_values_.begin(), i)] = i->second + plus_value + minus_value;
+    if(plus_value != 0 || minus_value != 0)
+      gripper_msg_.points[0].positions[std::distance(gripper_joint_values_.begin(), i)] = i->second + plus_value + minus_value;
   }
 
   arm_msg_.header.stamp = joy.header.stamp;
