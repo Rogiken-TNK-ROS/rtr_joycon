@@ -1,0 +1,25 @@
+axes:
+  L_stick_H:      0
+  L_stick_V:      1
+  L2_triger:      2
+  R_stick_H:      3
+  R_stick_V:      4
+  R2_triger:      5
+buttons:
+  A_button:       0 # ✕
+  B_button:       1 # ○
+  Y_button:       2 # △
+  X_button:       3 # □
+  L1_button:      4
+  R1_button:      5
+  L2_button:      6
+  R2_button:      7
+  option_button:  8 # Select
+  start_button:   9 # Start
+  home_button:    10
+  L3_button:      11
+  R3_button:      12
+  cross_U:        13 # Up
+  cross_D:        14 # Down
+  cross_L:        15 # Left
+  cross_R:        16 # Right

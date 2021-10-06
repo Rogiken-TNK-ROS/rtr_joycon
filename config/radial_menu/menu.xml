@@ -1,0 +1,18 @@
+<item name="Teleop Mode" display="alttxt" alttxt="Teleop">
+  <item name="Tohoku Jog">
+    <item name="Slow"/>
+    <item name="Fast"/>
+  </item>
+  <item name="Mani Jog">
+    <item name="Slow"/>
+    <item name="Fast"/>
+  </item>
+  <!-- <item name="Tohoku EEffector"> -->
+  <!--     <item name="Slow"/> -->
+  <!--     <item name="Fast"/> -->
+  <!-- </item> -->
+  <!-- <item name="Mani EEffector"> -->
+  <!--     <item name="XYZ"/> -->
+  <!--     <item name="RPY"/> -->
+  <!-- </item> -->
+</item>

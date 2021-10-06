@@ -1,0 +1,20 @@
+TOHOKU_IK:
+  RPY_mode: "buttons/R1_button"
+  X:
+    PLUS: "axes/L_stick_V"
+    MINUS: "axes/L_stick_V"
+  Y:
+    PLUS: "axes/L_stick_H"
+    MINUS: "axes/L_stick_H"
+  Z:
+    PLUS: "axes/R_stick_V"
+    MINUS: "axes/R_stick_V"
+  ROLL:
+    PLUS: "axes/L_stick_V"
+    MINUS: "axes/L_stick_V"
+  PITCH:
+    PLUS: "axes/L_stick_H"
+    MINUS: "axes/L_stick_H"
+  YAW:
+    PLUS: "axes/R_stick_H"
+    MINUS: "axes/R_stick_H"

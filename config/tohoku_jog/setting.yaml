@@ -1,0 +1,4 @@
+TOHKU_JOG:
+  axis_threshold: 0.5 # 0 to 1
+  slow_step_radian: 0.3
+  fast_step_radian: 0.9

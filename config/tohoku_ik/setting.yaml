@@ -1,0 +1,6 @@
+TOHOKU_IK:
+  axis_threshold: 0.5 # 0 to 1
+  slow_step_xyz: 0.05 # m
+  slow_step_rpy: 0.15 # rad
+  fast_step_xyz: 0.1  # m
+  fast_step_rpy: 0.3  # rad

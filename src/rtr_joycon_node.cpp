@@ -5,16 +5,12 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "rtr_joycon_node");
   ros::NodeHandle nh;
-  ros::Rate loop_rate(10);
 
-  RTRJoycon joycon(nh);
+  ros::spinOnce();
+  
+  RTRJoycon rjc(nh);
 
-  while (ros::ok())
-  {
-    joycon.updateCommand();
-    joycon.publish();
-    ros::spinOnce();
-    loop_rate.sleep();
-  }
+  ros::spin();
+  
   return 0;
 }
